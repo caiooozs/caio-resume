@@ -21,6 +21,7 @@ export default function HyphenCard({
   title,
   website_link,
   infos,
+  desc,
 }: HyphenProps) {
   return (
     <div className="group/hyphen relative h-full">
@@ -47,13 +48,14 @@ export default function HyphenCard({
               className="w-fit gap-2 rounded-full border-0 bg-[#8B5CF6]/10 px-3 py-1 text-[11px] font-medium tracking-wide text-[#c4b1ff] uppercase ring-1 ring-inset ring-[#8B5CF6]/30"
             >
               <UsersRoundIcon className="size-3" />
-              Community
+              My Community
             </Badge>
 
-            <CardTitle className="flex items-center gap-3 text-xl font-semibold tracking-tight sm:text-2xl">
+            <CardTitle className="flex flex-col items-start gap-3 text-xl font-semibold tracking-tight sm:text-2xl">
               <span className="min-w-0 break-words bg-gradient-to-r from-white via-white to-[#c4b1ff] bg-clip-text text-transparent">
                 {title}
               </span>
+              <span className="text-sm font-light">{desc}</span>
             </CardTitle>
           </div>
 

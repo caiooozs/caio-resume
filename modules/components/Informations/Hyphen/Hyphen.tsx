@@ -10,6 +10,7 @@ export default function Hyphen() {
             title={hd.title}
             website_link={hd.website_link}
             infos={hd.infos}
+            desc={hd.desc}
           />
         </div>
       ))}
