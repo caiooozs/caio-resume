@@ -1,4 +1,4 @@
-import useNavBarViewModel from "../../NavBar/Navbar.viewmodel";
+import useNavBarViewModel from "../../../Shared/NavBar/Navbar.viewmodel";
 import YoutubeView from "./Youtube.view";
 import useYoutubeViewModel from "./Youtube.viewmodel";
 

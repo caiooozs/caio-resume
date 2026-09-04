@@ -1,5 +1,5 @@
-import MainContent from "@/modules/components/MainContent/MainContent";
-import Informations from "@/modules/components/Informations/Informations";
+import MainContent from "@/modules/components/Home/MainContent/MainContent";
+import Informations from "@/modules/components/Home/Informations/Informations";
 
 export default function Home() {
   return (

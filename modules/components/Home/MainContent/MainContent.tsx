@@ -13,9 +13,6 @@ const MainContent = () => {
     <>
       <div className="flex min-h-[calc(100svh-var(--nav-h))] items-center justify-center px-6 py-16 text-white sm:px-8 md:min-h-[40rem]">
         <div className="flex w-full max-w-3xl flex-col items-center gap-3 text-center">
-          <span className="w-full max-w-56 rounded-xl bg-purple-500 text-center text-sm font-semibold sm:text-base">
-            <WordRotate words={words} />
-          </span>
           <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
             Hello, I'm <span className="text-[#8B5CF6]">Caio!</span>
           </h1>

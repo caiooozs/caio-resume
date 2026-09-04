@@ -3,7 +3,7 @@ import { NavBarViewProps } from "./NavBar.model";
 
 const links = [
   { href: "/", label: "All" },
-  { href: "/projects", label: "Projects" },
+  { href: "#projects", label: "Projects" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];

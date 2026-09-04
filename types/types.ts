@@ -20,3 +20,8 @@ export interface HyphenProps {
     ig_link: string;
   };
 }
+
+
+export interface SmoothScrollProps {
+  children: React.ReactNode
+}
