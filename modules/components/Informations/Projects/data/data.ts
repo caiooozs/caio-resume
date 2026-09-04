@@ -1,0 +1,55 @@
+import { Project } from "@/types/types";
+
+export const HomeProjects: Project[] = [
+  {
+    id: "01",
+    title: "Countries App",
+    desc: "Application developed with Next.js and TypeScript for looking up countries, focusing on user experience, code organization, and best practices",
+    stack: [
+      "NextJS",
+      "App Router",
+      "React",
+      "Typescript",
+      "React Query",
+      "Axios",
+      "TailwindCSS",
+      "shadcn/ui",
+      "MVVM Architecture",
+    ],
+    github: "https://github.com/caiooozs/countries-app",
+    building: false,
+  },
+  {
+    id: "02",
+    title: "HypheHub",
+    desc: "A system under development to keep students updated on news, events, activities, projects, and much more",
+    stack: [
+      "NextJS",
+      "Typescript",
+      "shadcn/ui",
+      "TailwindCSS",
+      "Supabase",
+      "React Query",
+    ],
+    github: "https://github.com/caiooozs/hyphen-community",
+    website: "https://www.hyphencommunity.com.br/",
+    building: false,
+  },
+  {
+    id: "03",
+    title: "Pharmacy Management",
+    desc: "Pharmacy management system for monitoring and controlling sales and stock of medications. Made to help my neighborhood pharmacy",
+    stack: [
+      "NextJS",
+      "Typescript",
+      "TailwindCSS",
+      "shadcn/ui",
+      "Supabase",
+      "React Query",
+      "MVVM Architecture",
+    ],
+    github: "https://github.com/caiooozs/pharmacy-controll",
+    website: "",
+    building: true,
+  },
+];

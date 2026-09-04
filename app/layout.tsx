@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Outfit } from "next/font/google";
 import "./globals.css";
+import { DotPattern } from "@/components/ui/dot-pattern";
+import NavBar from "@/modules/components/NavBar/NavBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+});
+
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 const geistMono = Geist_Mono({
@@ -19,11 +27,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className={`${outfit.className} h-full antialiased`}>
+      <body className="min-h-full flex flex-col">
+        <DotPattern />
+        <header>
+          <NavBar />
+          <div aria-hidden className="h-(--nav-h) shrink-0" />
+        </header>
+        <main className="flex-1">{children}</main>
+      </body>
     </html>
   );
 }
