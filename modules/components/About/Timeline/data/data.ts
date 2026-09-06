@@ -1,0 +1,45 @@
+import { TimelineItem } from "@/types/types";
+
+export const TimelineData: TimelineItem[] = [
+  {
+    id: "empresa-atual",
+    company: "Lorem Tech",
+    role: "Frontend Developer",
+    period: "2024 — Atualmente",
+    location: "Remoto",
+    contract: "CLT",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis consectetur sequi earum aliquid impedit ducimus, ex eos sed fugiat tempora hic corrupti voluptas mollitia.",
+    stack: ["React", "Next.js", "TypeScript", "Tailwind"],
+    current: true,
+  },
+  {
+    id: "empresa-2",
+    company: "Ipsum Digital",
+    role: "Desenvolvedor Frontend Jr.",
+    period: "2023 — 2024",
+    location: "São Paulo, SP",
+    contract: "CLT",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure odit eius explicabo tenetur ex debitis vero numquam hic autem officiis sunt reprehenderit, maiores facilis pariatur.",
+    stack: ["React", "JavaScript", "Styled Components"],
+  },
+  {
+    id: "empresa-3",
+    company: "Dolor Studio",
+    role: "Estagiário de Desenvolvimento",
+    period: "2022 — 2023",
+    location: "Híbrido",
+    contract: "Estágio",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, sit mollitia excepturi aut voluptates voluptatem! Molestiae assumenda voluptas, saepe tempore iusto error possimus.",
+    stack: ["HTML", "CSS", "JavaScript", "Figma"],
+  },
+  {
+    id: "empresa-4",
+    company: "Sit Amet Agency",
+    role: "Freelancer / UI Designer",
+    period: "2021 — 2022",
+    location: "Remoto",
+    contract: "Freelance",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam at nam natus suscipit ducimus, commodi quam voluptatem assumenda molestiae tempore iusto error.",
+    stack: ["Figma", "WordPress", "HTML", "CSS"],
+  },
+];

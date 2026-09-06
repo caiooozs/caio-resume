@@ -3,6 +3,7 @@ import Projects from "./Projects/Projects";
 import Hyphen from "./Hyphen/Hyphen";
 import Youtube from "./Youtube/Youtube";
 import Spotify from "./Spotify/Spotify";
+import TechStack from "./TechStack/TechStack";
 
 const Informations = () => {
   return (
@@ -18,6 +19,16 @@ const Informations = () => {
           </AnimatedGradientText>
         </div>
         <Projects />
+        <div className="p-4 text-center sm:p-3">
+          <AnimatedGradientText
+            className="text-4xl font-semibold uppercase sm:text-5xl md:text-6xl lg:text-3xl"
+            colorFrom="#53456dff"
+            colorTo="#9979d4ff"
+          >
+            Tech Stack
+          </AnimatedGradientText>
+        </div>
+        <TechStack />
         <div className="p-4 text-center sm:p-3">
           <AnimatedGradientText
             className="text-4xl font-semibold uppercase sm:text-5xl md:text-6xl lg:text-3xl"
