@@ -25,9 +25,9 @@ const MainContent = () => {
             className="max-w-prose text-sm font-light text-balance text-white/80 sm:text-base md:w-2/3"
           >
             <p className="">
-              Frontend developer focused on building fast, accessible
-              interfaces with an eye for detail. I work mainly with React,
-              Next.js and TypeScript
+              Frontend developer focused on building fast, accessible interfaces
+              with an eye for detail. I work mainly with React, Next.js and
+              TypeScript
             </p>
           </FadeInAnimation>
           <div className="mt-4 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row sm:gap-5">
@@ -39,13 +39,19 @@ const MainContent = () => {
               </Link>
             </FadeInAnimation>
             <FadeInAnimation animationDuration={0.3} animationDelay={0.4}>
-              <Button
-                size={"lg"}
-                variant={"secondary"}
-                className={"h-12 w-full sm:w-32"}
+              <a
+                href="/caio_tech_cv.pdf"
+                download="caio_tech_cv.pdf"
+                className="w-full sm:w-auto"
               >
-                Download CV
-              </Button>
+                <Button
+                  size={"lg"}
+                  variant={"secondary"}
+                  className={"h-12 w-full sm:w-32"}
+                >
+                  Download CV
+                </Button>
+              </a>
             </FadeInAnimation>
           </div>
         </div>

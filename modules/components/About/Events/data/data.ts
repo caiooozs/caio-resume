@@ -23,7 +23,7 @@ export const EventsData: EventItem[] = [
   },
   {
     id: "evento-3",
-    name: "Hyphen Setptember Yellow",
+    name: "Hyphen September Yellow",
     role: "Host",
     date: "Sep 2026",
     local: "Recife, PE",
