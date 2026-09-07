@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Caio Costa — Portfolio
 
-## Getting Started
+Personal portfolio built with Next.js. It presents who I am, the projects I've built, my career timeline, the content channels I run (YouTube and the Hyphen Community), and the events I've taken part in.
 
-First, run the development server:
+The site has two pages:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **`/`** — hero, projects, tech stack, and media (Hyphen, latest YouTube videos pulled from the channel feed, and a Spotify playlist embed).
+- **`/about`** — intro, career timeline, channels, events, and a contact CTA.
+
+## Stack
+
+- **Next.js 16** (App Router) + **React 19** + **TypeScript**
+- **Tailwind CSS v4** with **shadcn/ui** and **Magic UI** components
+- **Motion** for animations, **Lenis** for smooth scrolling
+- **lucide-react** and **@animateicons/react** for icons
+- **fast-xml-parser** to read the YouTube RSS feed
+- **TanStack Query** and **Axios** for data fetching
+
+## Project structure
+
+```
+app/                     # routes (App Router) — thin, they just render a page module
+modules/
+  pages/                 # page compositions (Home, About)
+  components/            # feature components, grouped by section
+    <Section>/data/      # all copy and links live in data.ts files
+components/ui/           # shared UI primitives (GlassCard, animations, etc.)
+types/types.ts           # shared types
+public/                  # images
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Content is deliberately separated from markup: to update text, links, jobs, events, or projects, edit the `data.ts` file of the matching section — no component changes needed.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Running locally
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
+The app runs at http://localhost:3000.
 
-To learn more about Next.js, take a look at the following resources:
+### Environment variables
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Create a `.env.local` file:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+YOTUBR_CHANNEL_ID=   # YouTube channel id, used to fetch the latest videos
+```
 
-## Deploy on Vercel
+Without it, the YouTube card renders its empty state.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Upcoming changes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Contact form with email delivery via [Resend](https://resend.com)** — today the CTA buttons open a `mailto:` link, which depends on the visitor having a mail client set up. The plan is to replace it with a proper form (name, email, message) on the About page, validated with Zod and submitted to a Next.js Route Handler that sends the message through the Resend API using a `RESEND_API_KEY` server-side environment variable, plus a React Email template, rate limiting, and success/error feedback in the UI.
+- Activate the `/projects` route (already linked from the navbar and footer).
+- Downloadable CV on the home page.
+- Testimonials section on the About page.
