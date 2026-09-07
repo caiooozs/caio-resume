@@ -45,6 +45,7 @@ export const HomeProjects: Project[] = [
       "TailwindCSS",
       "shadcn/ui",
       "Supabase",
+      "Zod",
       "React Query",
       "MVVM Architecture",
     ],

@@ -5,22 +5,16 @@ export const ChannelsData: ChannelItem[] = [
     id: "youtube",
     badge: "My Youtube Channel",
     title: "Caio Costa",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis consectetur sequi earum aliquid impedit ducimus, ex eos sed fugiat tempora hic corrupti voluptas mollitia possimus.",
+    desc: "A channel I use to show my routine, events, technical videos, and any topic I find relevant.",
     accent: "red",
-    link: "https://www.youtube.com/@caiooozs",
-    linkLabel: "youtube.com/@caiooozs",
-    stats: [
-      { label: "Vídeos", value: "30+" },
-      { label: "Inscritos", value: "1.2k" },
-      { label: "Assuntos", value: "Front-end" },
-    ],
+    link: "https://www.youtube.com/@caioccchaves",
+    linkLabel: "youtube.com/@caioccchaves",
     socials: [
       {
-        label: "Instagram",
-        href: "https://www.instagram.com/caiooozs",
-        icon: "instagram",
+        label: "YouTube",
+        href: "https://www.youtube.com/@caioccchaves",
+        icon: "youtube",
       },
-      { label: "GitHub", href: "https://github.com/caiooozs", icon: "github" },
     ],
   },
   {
@@ -30,12 +24,7 @@ export const ChannelsData: ChannelItem[] = [
     desc: "Hyphen is a community dedicated to talent development in the technology sector. We connect students, professionals, and opportunities through event promotion, networking, and knowledge sharing.",
     accent: "violet",
     link: "https://www.hyphencommunity.com.br/",
-    linkLabel: "hyphencommunity.com.br",
-    stats: [
-      { label: "Membros", value: "500+" },
-      { label: "Eventos", value: "15+" },
-      { label: "Desde", value: "2024" },
-    ],
+    linkLabel: "Website",
     socials: [
       {
         label: "Discord",

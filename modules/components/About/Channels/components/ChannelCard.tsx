@@ -56,7 +56,7 @@ export default function ChannelCard({
         </p>
 
         <div className="grid grid-cols-3 gap-3">
-          {stats.map(({ label, value }) => (
+          {stats?.map(({ label, value }) => (
             <div
               key={label}
               className="flex flex-col items-center gap-0.5 rounded-2xl bg-white/[0.03] px-2 py-3 text-center ring-1 ring-inset ring-white/10"
@@ -82,9 +82,7 @@ export default function ChannelCard({
 
       <GlassCardFooter>
         <div className="flex w-full flex-wrap items-center justify-between gap-3">
-          <GlassCardLabel>
-            {isYoutube ? "Watch now" : "Join us"}
-          </GlassCardLabel>
+          <GlassCardLabel>{isYoutube ? "Watch now" : "Join us"}</GlassCardLabel>
 
           <div className="flex items-center gap-2">
             {socials.map((social) => (

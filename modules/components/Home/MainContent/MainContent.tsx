@@ -25,9 +25,9 @@ const MainContent = () => {
             className="max-w-prose text-sm font-light text-balance text-white/80 sm:text-base md:w-2/3"
           >
             <p className="">
-              Desenvolvedor frontend focado em criar interfaces rápidas,
-              acessíveis e com atenção aos detalhes. Trabalho principalmente com
-              React, Next.js e TypeScript
+              Frontend developer focused on building fast, accessible
+              interfaces with an eye for detail. I work mainly with React,
+              Next.js and TypeScript
             </p>
           </FadeInAnimation>
           <div className="mt-4 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row sm:gap-5">

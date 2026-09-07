@@ -44,7 +44,8 @@ export type SocialIcon =
   | "discord"
   | "mail"
   | "whatsapp"
-  | "globe";
+  | "globe"
+  | "youtube";
 
 export interface AboutSectionProps {
   title: string;
@@ -69,7 +70,6 @@ export interface MyInfosProps {
   badge: string;
   paragraphs: string[];
   tags: string[];
-  highlights: { label: string; value: string }[];
   socials: SocialLink[];
 }
 
@@ -80,8 +80,8 @@ export interface TimelineItem {
   period: string;
   location: string;
   contract: string;
-  desc: string;
-  stack: string[];
+  desc?: string;
+  stack?: string[];
   current?: boolean;
 }
 
@@ -97,7 +97,7 @@ export interface ChannelItem {
   accent: "violet" | "red" | "emerald";
   link: string;
   linkLabel: string;
-  stats: { label: string; value: string }[];
+  stats?: { label: string; value: string }[];
   socials: SocialLink[];
 }
 
@@ -111,6 +111,7 @@ export interface EventItem {
   local: string;
   desc: string;
   tag: string;
+  photos?: string;
 }
 
 export interface EventCardProps extends EventItem {}
@@ -129,7 +130,6 @@ export interface TestimonialCardProps extends TestimonialItem {}
 export interface AboutCTAProps {
   badge: string;
   title: string;
-  desc: string;
   primary: { label: string; href: string };
   secondary: { label: string; href: string };
   contacts: SocialLink[];

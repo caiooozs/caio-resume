@@ -41,7 +41,7 @@ export default function TimelineCard({
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/70" />
               <span className="relative inline-flex size-1.5 rounded-full bg-emerald-400" />
             </span>
-            Atual
+            Current
           </span>
         )}
       </GlassCardHeader>

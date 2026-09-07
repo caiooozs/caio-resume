@@ -12,7 +12,6 @@ const navLinks = [
   { href: "/", label: "All" },
   { href: "/projects", label: "Projects" },
   { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
 ];
 
 const iconLinkClass =
@@ -45,7 +44,7 @@ export default function Footer() {
                 Frontend Developer
               </Badge>
               <a
-                href="malito:caioccosta22@gmail.com"
+                href="mailto:caioccosta22@gmail.com"
                 className="max-w-sx text-sm leading-relaxed text-white/50 transition-all transform hover:font-bold hover:text-white"
               >
                 caioccosta22@gmail.com

@@ -17,9 +17,12 @@ export default function EventCard({
   local,
   desc,
   tag,
+  photos,
 }: EventCardProps) {
   return (
-    <GlassCard glyph={<Ticket className="size-24 text-white/[0.03] sm:size-32" />}>
+    <GlassCard
+      glyph={<Ticket className="size-24 text-white/[0.03] sm:size-32" />}
+    >
       <GlassCardHeader>
         <div className="flex min-w-0 flex-col gap-3">
           <GlassCardBadge>
@@ -39,6 +42,15 @@ export default function EventCard({
         <p className="text-sm leading-relaxed font-light text-white/60">
           {desc}
         </p>
+        {photos && (
+          <div className="-mx-5 mt-4 p-4 overflow-hidden sm:-mx-6">
+            <img
+              src={photos}
+              alt={name}
+              className="aspect-[16/9] w-full object-cover object-center"
+            />
+          </div>
+        )}
       </GlassCardContent>
 
       <GlassCardFooter>

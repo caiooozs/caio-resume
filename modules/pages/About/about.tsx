@@ -3,7 +3,6 @@ import AboutSection from "@/modules/components/About/Shared/AboutSection";
 import Timeline from "@/modules/components/About/Timeline/Timeline";
 import Channels from "@/modules/components/About/Channels/Channels";
 import Events from "@/modules/components/About/Events/Events";
-import Testimonials from "@/modules/components/About/Testimonials/Testimonials";
 import CTA from "@/modules/components/About/CTA/CTA";
 
 export default function About() {
@@ -13,29 +12,28 @@ export default function About() {
         <MyInfos />
 
         <AboutSection
-          id="carreira"
-          title="Carreira"
-          subtitle="Onde passei, o que construí e as stacks que usei em cada etapa."
+          id="career"
+          title="Career"
+          subtitle="Where I have been, what I built and the stacks I used at each step."
         >
           <Timeline />
         </AboutSection>
 
         <AboutSection
-          id="canais"
-          title="Canais"
-          subtitle="Onde eu compartilho conteúdo e ajudo a construir comunidade."
+          id="channels"
+          title="Channels"
+          subtitle="Where I share content and help build community."
         >
           <Channels />
         </AboutSection>
 
         <AboutSection
-          id="eventos"
-          title="Eventos"
-          subtitle="Talks, meetups e hackathons em que participei ou ajudei a organizar."
+          id="events"
+          title="Events"
+          subtitle="Talks, meetups and hackathons I joined or helped to organize."
           className="gap-10"
         >
           <Events />
-          <Testimonials />
         </AboutSection>
 
         <CTA />

@@ -1,22 +1,21 @@
 import { AboutCTAProps } from "@/types/types";
 
 export const CTAData: AboutCTAProps = {
-  badge: "Bora conversar",
-  title: "Vamos construir algo juntos?",
-  desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis consectetur sequi earum aliquid impedit ducimus, ex eos sed fugiat tempora hic corrupti voluptas mollitia possimus expedita.",
+  badge: "Let’s talk",
+  title: "Shall we build something together?",
   primary: {
-    label: "Entrar em contato",
+    label: "Get in touch",
     href: "mailto:caioccosta22@gmail.com",
   },
   secondary: {
-    label: "Ver projetos",
+    label: "See projects",
     href: "/#projects",
   },
   contacts: [
     { label: "E-mail", href: "mailto:caioccosta22@gmail.com", icon: "mail" },
     {
       label: "LinkedIn",
-      href: "https://www.linkedin.com/in/caiooozs",
+      href: "https://www.linkedin.com/in/caioccesar/",
       icon: "linkedin",
     },
     { label: "GitHub", href: "https://github.com/caiooozs", icon: "github" },

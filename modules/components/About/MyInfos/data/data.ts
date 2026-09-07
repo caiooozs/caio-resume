@@ -5,31 +5,30 @@ export const MyInfosData: MyInfosProps = {
   photoAlt: "Caio Cesar Costa",
   name: "Caio Cesar Costa",
   role: "Frontend Developer",
-  location: "São Paulo, Brasil",
+  location: "Recife, PE",
   badge: "About me",
   paragraphs: [
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis consectetur sequi earum aliquid impedit ducimus, ex eos sed fugiat tempora hic, qui corrupti voluptas mollitia, possimus expedita id neque distinctio.",
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure odit eius explicabo tenetur ex debitis vero numquam hic autem officiis sunt reprehenderit, maiores facilis pariatur dolor obcaecati amet aperiam aut.",
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, sit mollitia excepturi aut voluptates voluptatem! Molestiae assumenda voluptas, saepe tempore iusto error possimus, commodi quam at nam natus.",
+    "I’m Caio, a frontend developer passionate about turning ideas into interfaces that people genuinely enjoy using. I work primarily with React and Next.js, always striving for a balance between clean code, performance, and a keen eye for visual detail.",
+    "In addition to my projects, I run a YouTube channel where I share my daily routine, events, and a bit of whatever comes to mind, as well as a community Hyphen Community where developers exchange knowledge and grow together.",
   ],
-  tags: ["React", "Next.js", "TypeScript", "UX/UI Design", "Node.js"],
-  highlights: [
-    { label: "Anos de código", value: "4+" },
-    { label: "Projetos entregues", value: "20+" },
-    { label: "Eventos e talks", value: "10+" },
-  ],
+  tags: ["React", "Next.js", "Javascript", "TypeScript", "UX/UI Design"],
   socials: [
     { label: "GitHub", href: "https://github.com/caiooozs", icon: "github" },
     {
       label: "LinkedIn",
-      href: "https://www.linkedin.com/in/caiooozs",
+      href: "https://www.linkedin.com/in/caioccesar/",
       icon: "linkedin",
     },
     {
       label: "Instagram",
-      href: "https://www.instagram.com/caiooozs",
+      href: "https://www.instagram.com/caaioccosta/",
       icon: "instagram",
     },
     { label: "E-mail", href: "mailto:caioccosta22@gmail.com", icon: "mail" },
+    {
+      label: "Youtube",
+      href: "https://www.youtube.com/@caioccchaves",
+      icon: "youtube",
+    },
   ],
 };

@@ -14,7 +14,6 @@ export default function MyInfos() {
     badge,
     paragraphs,
     tags,
-    highlights,
     socials,
   } = MyInfosData;
 
@@ -104,19 +103,6 @@ export default function MyInfos() {
             animationDelay={0.4}
             className="mt-2 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between"
           >
-            <div className="flex flex-wrap justify-center gap-6 lg:justify-start">
-              {highlights.map(({ label, value }) => (
-                <div key={label} className="flex flex-col items-center lg:items-start">
-                  <span className="text-2xl font-semibold text-white">
-                    {value}
-                  </span>
-                  <span className="text-[11px] tracking-wide text-white/35 uppercase">
-                    {label}
-                  </span>
-                </div>
-              ))}
-            </div>
-
             <div className="flex items-center justify-center gap-2 lg:justify-start">
               {socials.map((social) => (
                 <SocialIconLink key={social.label} {...social} />

@@ -11,7 +11,7 @@ import SocialIconLink from "../Shared/SocialIconLink";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 export default function CTA() {
-  const { badge, title, desc, primary, secondary, contacts } = CTAData;
+  const { badge, title, primary, secondary, contacts } = CTAData;
 
   return (
     <FadeInAnimation animationDuration={0.3} viewPort>
@@ -30,10 +30,6 @@ export default function CTA() {
                 {title}
               </span>
             </h2>
-
-            <p className="max-w-xl text-sm leading-relaxed font-light text-white/55">
-              {desc}
-            </p>
 
             <div className="mt-2 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row sm:gap-4">
               <Link href={primary.href} className="w-full sm:w-auto">
@@ -56,7 +52,7 @@ export default function CTA() {
 
             <div className="mt-4 flex flex-col items-center gap-3">
               <span className="text-[11px] font-medium tracking-wide text-white/35 uppercase">
-                Ou me chame por aqui
+                Or reach me here
               </span>
               <div className="flex flex-wrap items-center justify-center gap-2">
                 {contacts.map((contact) => (
