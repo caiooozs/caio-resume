@@ -52,7 +52,7 @@ export default function TimelineCard({
         </p>
 
         <div className="flex flex-wrap gap-2">
-          {stack.map((tech) => (
+          {stack?.map((tech) => (
             <span
               key={tech}
               className="rounded-full bg-white/[0.04] px-3 py-1 text-[11px] text-white/60 ring-1 ring-inset ring-white/10"
