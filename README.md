@@ -45,7 +45,7 @@ The app runs at http://localhost:3000.
 Create a `.env.local` file:
 
 ```bash
-YOTUBR_CHANNEL_ID=   # YouTube channel id, used to fetch the latest videos
+YOUTUBE_CHANNEL_ID=   # YouTube channel id, used to fetch the latest videos
 ```
 
 Without it, the YouTube card renders its empty state.

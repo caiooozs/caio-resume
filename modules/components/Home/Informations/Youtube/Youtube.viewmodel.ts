@@ -4,7 +4,7 @@ import { Video } from "./Youtube.model";
 export default function useYoutubeViewModel() {
   async function getVideos(): Promise<Video[]> {
     const res = await fetch(
-      `https://www.youtube.com/feeds/videos.xml?channel_id=${process.env.YOTUBR_CHANNEL_ID}`,
+      `https://www.youtube.com/feeds/videos.xml?channel_id=${process.env.YOUTUBE_CHANNEL_ID}`,
       { next: { revalidate: 3600 } },
     );
 
