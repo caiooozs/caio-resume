@@ -2,7 +2,6 @@ import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import Projects from "./Projects/Projects";
 import Hyphen from "./Hyphen/Hyphen";
 import Youtube from "./Youtube/Youtube";
-import Spotify from "./Spotify/Spotify";
 import TechStack from "./TechStack/TechStack";
 
 const Informations = () => {
@@ -40,7 +39,6 @@ const Informations = () => {
         </div>
         <Hyphen />
         <Youtube />
-        <Spotify />
       </div>
     </section>
   );
