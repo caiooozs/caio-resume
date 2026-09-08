@@ -4,7 +4,8 @@ import "./globals.css";
 import { DotPattern } from "@/components/ui/dot-pattern";
 import NavBar from "@/modules/components/Shared/NavBar/NavBar";
 import Footer from "@/modules/components/Shared/Footer/Footer";
-import SmoothScroll from "@/components/ui/smooth-scroll";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -56,6 +57,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </header>
         <main className="flex-1">{children}</main>
         <Footer />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
