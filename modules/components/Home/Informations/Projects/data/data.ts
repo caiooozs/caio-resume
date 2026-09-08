@@ -37,6 +37,15 @@ export const HomeProjects: Project[] = [
   },
   {
     id: "03",
+    title: "ZeroAoMEI",
+    desc: "A platform to help micro-entrepreneurs professionalize and manage their businesses simply, quickly, and easily",
+    stack: ["HTML5", "CSS3", "Javascript", "Clean Code", "Clean Architecture"],
+    github: "https://github.com/caiooozs/zerotomei-front",
+    website: "",
+    building: true,
+  },
+  {
+    id: "04",
     title: "Pharmacy Management",
     desc: "Pharmacy management system for monitoring and controlling sales and stock of medications. Made to help my neighborhood pharmacy",
     stack: [
