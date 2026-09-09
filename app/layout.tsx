@@ -6,6 +6,7 @@ import NavBar from "@/modules/components/Shared/NavBar/NavBar";
 import Footer from "@/modules/components/Shared/Footer/Footer";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Toaster } from "@/components/ui/sonner";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -57,6 +58,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </header>
         <main className="flex-1">{children}</main>
         <Footer />
+        <Toaster />
         <Analytics />
         <SpeedInsights />
       </body>
