@@ -16,7 +16,7 @@ export const EventsData: EventItem[] = [
     name: "Ideathon Saúde Digital UPE 2026",
     role: "Pitcher and Reseacher",
     date: "Jul 2026",
-    local: "Online",
+    local: "Recife - PE",
     desc: "During the event, we examined challenges in the healthcare sector and were tasked with proposing solutions that leveraged technology as an ally. It involved hours of intense research, planning, documentation, debate, refinement, and a great deal of idea-sharing. Above all, however, the experience was defined by camaraderie and teamwork. This experience pushed me out of my comfort zone and enabled me to develop lifelong skills, such as leadership, decision-making, and the ability to adapt to new challenges.",
     tag: "UPE",
     photos: "/upe_idathon.jpg",
