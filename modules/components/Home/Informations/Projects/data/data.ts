@@ -58,7 +58,7 @@ export const HomeProjects: Project[] = [
       "React Query",
       "MVVM Architecture",
     ],
-    github: "https://github.com/caiooozs/pharmacy-controll",
+    github: "https://github.com/caiooozs/pharmacy-control",
     website: "",
     building: true,
   },
