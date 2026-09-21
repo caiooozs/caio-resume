@@ -32,7 +32,7 @@ export default function TimelineCard({
 
           <GlassCardTitle>{role}</GlassCardTitle>
 
-          <span className="text-sm text-white/50">{company}</span>
+          <span className="text-xl text-white">{company}</span>
         </div>
 
         {current && (

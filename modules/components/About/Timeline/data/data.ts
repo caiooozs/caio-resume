@@ -2,7 +2,18 @@ import { TimelineItem } from "@/types/types";
 
 export const TimelineData: TimelineItem[] = [
   {
-    id: "empresa-atual",
+    id: "empresa-1",
+    company: "HyphenLab",
+    role: "CEO & Founder",
+    period: "August 2026 — Current",
+    location: "Recife, PE",
+    contract: "PJ",
+    desc: "A startup focused on developing technology and marketing solutions for micro-entrepreneurs. We are currently developing solutions for two clients. We aim to help micro-entrepreneurs with both the digitization of their businesses, such as through dashboards and scheduling systems, and the management of their social media.",
+    stack: ["React", "NextJS", "Supabase", "Firebase", "Vercel"],
+    current: true,
+  },
+  {
+    id: "empresa-2",
     company: "Secretaria de Saúde Igarassu",
     role: "IT Intern",
     period: "2025 — Current",
@@ -13,7 +24,7 @@ export const TimelineData: TimelineItem[] = [
     current: true,
   },
   {
-    id: "empresa-2",
+    id: "empresa-3",
     company: "Industrias Reunidas Renda",
     role: "Administrative Assistant - MPC",
     period: "2024 — Current",
