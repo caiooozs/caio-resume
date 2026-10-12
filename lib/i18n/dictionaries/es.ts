@@ -6,7 +6,8 @@ const es: Dictionary = {
     title: "Caio Cesar Costa | Desarrollador Frontend",
     description:
       "Desarrollador frontend de Recife, PE, que trabaja con React y Next.js. Creo interfaces que la gente disfruta usar, tengo un canal de YouTube y ayudo a liderar la Hyphen Community.",
-    shortDescription: "Desarrollador frontend de Recife, PE, que trabaja con React y Next.js.",
+    shortDescription:
+      "Desarrollador frontend de Recife, PE, que trabaja con React y Next.js.",
     ogLocale: "es_ES",
   },
   nav: {
@@ -31,7 +32,7 @@ const es: Dictionary = {
   },
   home: {
     hello: "Hola, soy ",
-    name: "Caio!",
+    name: "Caio Costa!",
     bio: "Desarrollador frontend enfocado en crear interfaces rápidas y accesibles, con atención al detalle. Trabajo principalmente con React, Next.js y TypeScript",
     goToProjects: "Ver proyectos",
     downloadCv: "Descargar CV",
@@ -65,11 +66,13 @@ const es: Dictionary = {
   },
   about: {
     career: "Trayectoria",
-    careerLead: "Dónde estuve, qué construí y las tecnologías que usé en cada etapa.",
+    careerLead:
+      "Dónde estuve, qué construí y las tecnologías que usé en cada etapa.",
     channels: "Canales",
     channelsLead: "Donde comparto contenido y ayudo a construir comunidad.",
     events: "Eventos",
-    eventsLead: "Charlas, meetups y hackathons en los que participé o ayudé a organizar.",
+    eventsLead:
+      "Charlas, meetups y hackathons en los que participé o ayudé a organizar.",
     at: "en",
     current: "Actual",
     skills: "Habilidades",
@@ -80,7 +83,8 @@ const es: Dictionary = {
   },
   contact: {
     title: "Contacto",
-    intro: "¿Tienes un proyecto, una idea o solo quieres saludar? Envíame un mensaje y te responderé.",
+    intro:
+      "¿Tienes un proyecto, una idea o solo quieres saludar? Envíame un mensaje y te responderé.",
     formTitle: "Envíame un mensaje",
     name: "Nombre",
     email: "Correo",

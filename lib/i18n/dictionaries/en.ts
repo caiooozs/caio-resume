@@ -4,7 +4,8 @@ const en = {
     title: "Caio Cesar Costa — Frontend Developer",
     description:
       "Frontend developer from Recife, PE, working with React and Next.js. I build interfaces people enjoy using, run a YouTube channel, and help lead the Hyphen Community.",
-    shortDescription: "Frontend developer from Recife, PE, working with React and Next.js.",
+    shortDescription:
+      "Frontend developer from Recife, PE, working with React and Next.js.",
     ogLocale: "en_US",
   },
   nav: {
@@ -29,7 +30,7 @@ const en = {
   },
   home: {
     hello: "Hello, I'm ",
-    name: "Caio!",
+    name: "Caio Costa!",
     bio: "Frontend developer focused on building fast, accessible interfaces with an eye for detail. I work mainly with React, Next.js and TypeScript",
     goToProjects: "Go to Projects",
     downloadCv: "Download CV",
@@ -59,7 +60,8 @@ const en = {
   },
   about: {
     career: "Career",
-    careerLead: "Where I have been, what I built and the stacks I used at each step.",
+    careerLead:
+      "Where I have been, what I built and the stacks I used at each step.",
     channels: "Channels",
     channelsLead: "Where I share content and help build community.",
     events: "Events",
@@ -74,7 +76,8 @@ const en = {
   },
   contact: {
     title: "Contact",
-    intro: "Got a project, an idea or just want to say hi? Drop me a message and I'll get back to you.",
+    intro:
+      "Got a project, an idea or just want to say hi? Drop me a message and I'll get back to you.",
     formTitle: "Send a message",
     name: "Name",
     email: "Email",
