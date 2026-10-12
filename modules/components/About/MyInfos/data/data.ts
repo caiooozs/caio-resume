@@ -9,7 +9,7 @@ export const MyInfosData: MyInfosProps = {
   badge: "About me",
   paragraphs: [
     "I’m Caio, a frontend developer passionate about turning ideas into interfaces that people genuinely enjoy using. I work primarily with React and Next.js, always striving for a balance between clean code, performance, and a keen eye for visual detail.",
-    "In addition to my projects, I run a YouTube channel where I share my daily routine, events, and a bit of whatever comes to mind, as well as a community Hyphen Community where developers exchange knowledge and grow together.",
+    "In addition to my projects, I run a YouTube channel where I share my daily routine, events, and a bit of whatever comes to mind, as well as a community Hyphen Community where developers exchange knowledge and grow together!",
   ],
   tags: [
     "React",
