@@ -1,19 +1,16 @@
-import { HomeProjectCardProps } from "@/types/types";
-import {
-  GlassCard,
-  GlassCardContent,
-  GlassCardFooter,
-  GlassCardHeader,
-  GlassIconButton,
-} from "@/components/ui/glass-card";
-import { CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { GlobeIcon } from "@animateicons/react/lucide";
-import { GithubIcon } from "@animateicons/react/huge";
 import Link from "next/link";
+import { HomeProjectCardProps } from "@/types/types";
+import { ExternalArrow } from "@/components/ui/kit";
+import { TechList } from "@/components/ui/tech-list";
+import { getI18n } from "@/lib/i18n/server";
 import BuildingBadge from "./buildingBadge";
 
-export default function HomeProjectCard({
+/**
+ * Um projeto numa linha: numero, nome (a linha inteira abre o GitHub), estado,
+ * descricao e as tecnologias em destaque, com o logo de cada uma. Os links
+ * extras ficam a direita, acima do link da linha.
+ */
+export default async function HomeProjectCard({
   id,
   title,
   desc,
@@ -21,57 +18,57 @@ export default function HomeProjectCard({
   website,
   github,
   building,
-}: HomeProjectCardProps) {
+  index = 0,
+}: HomeProjectCardProps & { index?: number }) {
+  const { t } = await getI18n();
+
   return (
-    <GlassCard glyph={id}>
-      <GlassCardHeader className="flex-col-reverse sm:flex-row">
-        <div className="flex min-w-0 flex-col gap-3">
-          <CardTitle className="flex flex-wrap items-center gap-x-3 gap-y-1 text-base font-semibold tracking-tight sm:text-lg">
-            <span className="inline-flex h-7 min-w-7 items-center justify-center rounded-md bg-[#8B5CF6]/15 px-2 font-mono text-xs font-medium text-[#c4b1ff] ring-1 ring-inset ring-[#8B5CF6]/30 transition-colors duration-300 group-hover/glass:bg-[#8B5CF6]/25 group-hover/glass:text-white">
-              {id}
-            </span>
-            <span className="hidden h-4 w-px bg-white/15 sm:block" />
-            <span className="min-w-0 bg-gradient-to-r from-white to-white/70 bg-clip-text break-words text-transparent">
-              {title}
-            </span>
-          </CardTitle>
-          <p className="max-w-prose text-sm leading-relaxed text-white/55 transition-colors duration-300 group-hover/glass:text-white/70">
-            {desc}
-          </p>
-        </div>
-        <div className="shrink-0">{building && <BuildingBadge />}</div>
-      </GlassCardHeader>
+    <li
+      id={`project-${id}`}
+      data-row
+      data-reveal="rise"
+      style={{ "--i": index + 1 } as React.CSSProperties}
+      className="group relative grid grid-cols-[1.75rem_minmax(0,1fr)] rounded-xl px-3 py-4"
+    >
+      <span aria-hidden className="tabular pt-[0.2rem] text-[0.8125rem] text-muted">
+        {id}
+      </span>
 
-      <GlassCardContent>
-        <div className="flex flex-wrap gap-2">
-          {stack.map((stack) => (
-            <Badge
-              key={stack}
-              variant={"secondary"}
-              className="rounded-full border-0 bg-white/[0.06] px-3 py-1 text-[11px] font-medium text-white/70 ring-1 ring-inset ring-white/10 backdrop-blur-sm transition-colors duration-300 hover:bg-[#8B5CF6]/20 hover:text-white hover:ring-[#8B5CF6]/40"
+      <div className="flex min-w-0 flex-col gap-1.5">
+        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+          <h3 className="flex min-w-0 items-center gap-2.5 text-base font-medium text-ink">
+            <Link
+              href={github}
+              className="rounded-sm outline-none after:absolute after:inset-0 after:rounded-xl focus-visible:after:outline-2 focus-visible:after:outline-offset-0 focus-visible:after:outline-accent"
             >
-              {stack}
-            </Badge>
-          ))}
-        </div>
-      </GlassCardContent>
-
-      <GlassCardFooter>
-        <div className="flex w-full items-center justify-end gap-2">
-          <Link href={github}>
-            <GlassIconButton>
-              <GithubIcon />
-            </GlassIconButton>
-          </Link>
-          {website && (
-            <Link href={website}>
-              <GlassIconButton>
-                <GlobeIcon />
-              </GlassIconButton>
+              {title}
             </Link>
-          )}
+            {building && <BuildingBadge label={t.home.building} />}
+          </h3>
+
+          <div className="relative z-10 flex items-center gap-3.5 text-[0.8125rem] text-muted">
+            <Link href={github} className="group/link inline-flex items-center gap-1 transition-colors hover:text-ink">
+              {t.home.github}
+              <ExternalArrow />
+            </Link>
+            {website && (
+              <Link href={website} className="group/link inline-flex items-center gap-1 transition-colors hover:text-ink">
+                {t.home.website}
+                <ExternalArrow />
+              </Link>
+            )}
+          </div>
         </div>
-      </GlassCardFooter>
-    </GlassCard>
+
+        <p className="max-w-[58ch] text-[0.9375rem] leading-relaxed text-muted">{desc}</p>
+
+        <TechList
+          items={stack}
+          label={t.home.builtWith}
+          translate={(item) => t.home.stackTerms[item] ?? item}
+          className="mt-2"
+        />
+      </div>
+    </li>
   );
 }

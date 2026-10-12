@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { GlassIconButton } from "@/components/ui/glass-card";
 import { SocialLink } from "@/types/types";
+import { cn } from "@/lib/utils";
 import { DiscordIcon, GithubIcon } from "@animateicons/react/huge";
 import {
   GlobeIcon,
@@ -10,19 +10,23 @@ import {
 } from "@animateicons/react/lucide";
 import { MessageCircleMore } from "lucide-react";
 
-/** Cada rede tem o seu proprio hover para nao ficar tudo roxo. */
-const socialStyles: Record<SocialLink["icon"], string> = {
-  github: "hover:bg-white/15 hover:ring-white/30",
-  instagram: "hover:bg-pink-500/25 hover:ring-pink-400/50",
-  linkedin: "hover:bg-sky-500/25 hover:ring-sky-400/50",
-  discord: "hover:bg-[#5865F2]/25 hover:ring-[#5865F2]/50",
-  whatsapp: "hover:bg-emerald-500/25 hover:ring-emerald-400/50",
-  mail: "hover:bg-[#8B5CF6]/25 hover:ring-[#8B5CF6]/50",
-  globe: "hover:bg-[#8B5CF6]/25 hover:ring-[#8B5CF6]/50",
-  youtube: "hover:bg-red-600/25 hover:ring-red-500/50",
-};
+/** Botao redondo so de icone: sem fundo em repouso, uma bolha suave no hover. */
+export function iconButton(className?: string) {
+  return cn(
+    "inline-flex size-9 shrink-0 items-center justify-center rounded-full text-muted transition-[background-color,color,scale] duration-200 ease-out-expo hover:bg-raised hover:text-ink active:scale-[0.94] [&_svg]:size-[18px]",
+    className
+  );
+}
 
-function YoutubeGlyph({ className }: { className?: string }) {
+/** Texto legivel de um link social: "github.com/caiooozs", "caio@...". */
+export function socialText(href: string) {
+  return href
+    .replace(/^mailto:/, "")
+    .replace(/^https?:\/\/(www\.)?/, "")
+    .replace(/\/$/, "");
+}
+
+export function YoutubeGlyph({ className }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -35,7 +39,7 @@ function YoutubeGlyph({ className }: { className?: string }) {
   );
 }
 
-function SocialGlyph({ icon }: { icon: SocialLink["icon"] }) {
+export function SocialGlyph({ icon }: { icon: SocialLink["icon"] }) {
   switch (icon) {
     case "github":
       return <GithubIcon />;
@@ -46,22 +50,44 @@ function SocialGlyph({ icon }: { icon: SocialLink["icon"] }) {
     case "discord":
       return <DiscordIcon />;
     case "whatsapp":
-      return <MessageCircleMore className="size-5" />;
+      return <MessageCircleMore />;
     case "mail":
       return <MailIcon />;
     case "youtube":
-      return <YoutubeGlyph className="size-5" />;
+      return <YoutubeGlyph />;
     default:
       return <GlobeIcon />;
   }
 }
 
-export default function SocialIconLink({ label, href, icon }: SocialLink) {
+export default function SocialIconLink({
+  label,
+  href,
+  icon,
+  className,
+}: SocialLink & { className?: string }) {
   return (
-    <Link href={href} aria-label={label} title={label}>
-      <GlassIconButton className={socialStyles[icon]}>
-        <SocialGlyph icon={icon} />
-      </GlassIconButton>
+    <Link href={href} aria-label={label} title={label} className={iconButton(className)}>
+      <SocialGlyph icon={icon} />
     </Link>
+  );
+}
+
+/** Fileira de redes, com o primeiro icone alinhado ao texto acima. */
+export function SocialRow({
+  links,
+  className,
+}: {
+  links: SocialLink[];
+  className?: string;
+}) {
+  return (
+    <ul className={cn("-ml-2 flex flex-wrap items-center gap-0.5", className)}>
+      {links.map((link) => (
+        <li key={link.label}>
+          <SocialIconLink {...link} />
+        </li>
+      ))}
+    </ul>
   );
 }

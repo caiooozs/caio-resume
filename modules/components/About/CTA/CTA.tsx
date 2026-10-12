@@ -1,68 +1,58 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import FadeInAnimation from "@/components/ui/fade-animation";
-import {
-  GlassCard,
-  GlassCardBadge,
-  GlassCardContent,
-} from "@/components/ui/glass-card";
-import { CTAData } from "./data/data";
-import SocialIconLink from "../Shared/SocialIconLink";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
+import { getCTA } from "./data/i18n";
+import { getI18n } from "@/lib/i18n/server";
+import { SocialRow } from "../Shared/SocialIconLink";
 
-export default function CTA() {
-  const { badge, title, primary, secondary, contacts } = CTAData;
+/** Fechamento da /about: a pergunta grande, as duas acoes e os contatos diretos. */
+export default async function CTA() {
+  const { locale, t } = await getI18n();
+  const { badge, title, primary, secondary, contacts } = getCTA(locale);
 
   return (
-    <FadeInAnimation animationDuration={0.3} viewPort>
-      <div className="relative">
-        <div className="pointer-events-none absolute -bottom-16 left-1/2 h-64 w-full max-w-[36rem] -translate-x-1/2 rounded-full bg-[#8B5CF6]/15 blur-[120px]" />
+    <section aria-labelledby="cta-title" className="mt-24 flex flex-col items-start gap-8 border-t border-line pt-14 sm:mt-28 sm:pt-16">
+      {/* a pergunta se monta palavra por palavra, entrando em foco */}
+      <h2
+        id="cta-title"
+        data-reveal="words"
+        className="max-w-[16ch] text-[2.125rem] leading-[1.1] font-semibold tracking-[-0.035em] text-ink sm:text-[2.75rem]"
+      >
+        {title.split(" ").map((word, index, words) => (
+          <span key={index}>
+            <span className="word" style={{ "--w": index } as React.CSSProperties}>
+              {word}
+            </span>
+            {index < words.length - 1 && " "}
+          </span>
+        ))}
+      </h2>
 
-        <GlassCard glyph="?">
-          <GlassCardContent className="flex flex-col items-center gap-6 px-5 py-10 text-center sm:px-10 sm:py-14">
-            <GlassCardBadge>
-              <Sparkles className="size-3" />
-              {badge}
-            </GlassCardBadge>
-
-            <h2 className="max-w-2xl text-2xl font-semibold tracking-tight sm:text-4xl">
-              <span className="bg-gradient-to-r from-white via-white to-[#c4b1ff] bg-clip-text text-transparent">
-                {title}
-              </span>
-            </h2>
-
-            <div className="mt-2 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row sm:gap-4">
-              <Link href={primary.href} className="w-full sm:w-auto">
-                <Button size="lg" className="h-12 w-full gap-2 sm:w-48">
-                  {primary.label}
-                  <ArrowRight className="size-4" />
-                </Button>
-              </Link>
-
-              <Link href={secondary.href} className="w-full sm:w-auto">
-                <Button
-                  size="lg"
-                  variant="secondary"
-                  className="h-12 w-full sm:w-40"
-                >
-                  {secondary.label}
-                </Button>
-              </Link>
-            </div>
-
-            <div className="mt-4 flex flex-col items-center gap-3">
-              <span className="text-[11px] font-medium tracking-wide text-white/35 uppercase">
-                Or reach me here
-              </span>
-              <div className="flex flex-wrap items-center justify-center gap-2">
-                {contacts.map((contact) => (
-                  <SocialIconLink key={contact.label} {...contact} />
-                ))}
-              </div>
-            </div>
-          </GlassCardContent>
-        </GlassCard>
+      <div
+        data-reveal="rise"
+        style={{ "--d": "420ms" } as React.CSSProperties}
+        className="flex flex-wrap items-center gap-2"
+      >
+        <Link href={primary.href} className={buttonVariants({ size: "lg", className: "group" })}>
+          {primary.label}
+          <ArrowRight className="transition-[translate] duration-300 ease-out-expo group-hover:translate-x-0.5" />
+        </Link>
+        <Link href={secondary.href} className={buttonVariants({ variant: "ghost", size: "lg" })}>
+          {secondary.label}
+        </Link>
       </div>
-    </FadeInAnimation>
+
+      <div
+        data-reveal="rise"
+        style={{ "--d": "520ms" } as React.CSSProperties}
+        className="flex flex-wrap items-center gap-x-4 gap-y-2"
+      >
+        <p className="flex items-baseline gap-2 text-[0.9375rem]">
+          <span className="font-medium text-ink">{badge}</span>
+          <span className="text-muted">{t.about.orReach}</span>
+        </p>
+        <SocialRow links={contacts} />
+      </div>
+    </section>
   );
 }

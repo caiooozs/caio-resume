@@ -1,21 +1,16 @@
-import FadeInAnimation from "@/components/ui/fade-animation";
 import EventCard from "./components/EventCard";
-import { EventsData } from "./data/data";
+import { getEvents } from "./data/i18n";
+import { getI18n } from "@/lib/i18n/server";
 
-export default function Events() {
+/** Eventos contados pelas fotos: imagem grande, o que foi e o que ficou. */
+export default async function Events() {
+  const { locale } = await getI18n();
+
   return (
-    <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
-      {EventsData.map((event, index) => (
-        <FadeInAnimation
-          key={event.id}
-          animationDuration={0.3}
-          animationDelay={index * 0.05}
-          viewPort
-          className="h-full"
-        >
-          <EventCard {...event} />
-        </FadeInAnimation>
+    <ol className="flex flex-col gap-14 sm:gap-16">
+      {getEvents(locale).map((event) => (
+        <EventCard key={event.id} {...event} />
       ))}
-    </div>
+    </ol>
   );
 }

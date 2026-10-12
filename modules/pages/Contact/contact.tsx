@@ -2,7 +2,7 @@ import Contact from "@/modules/components/Contact/Contact";
 
 export default function ContactPage() {
   return (
-    <div className="relative mx-auto w-full max-w-6xl px-4 pt-10 pb-20 sm:px-6 sm:pt-16 sm:pb-32">
+    <div className="mx-auto w-full max-w-[60rem] px-5 pb-12 sm:px-6">
       <Contact />
     </div>
   );

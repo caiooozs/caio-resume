@@ -1,129 +1,78 @@
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import { HyphenData } from "../../Home/Informations/Hyphen/data/data";
-import { GithubIcon } from "@animateicons/react/huge";
-import { GlobeIcon, InstagramIcon } from "@animateicons/react/lucide";
-import { DiscordIcon } from "@animateicons/react/huge";
-import FadeInAnimation from "@/components/ui/fade-animation";
+import { getMyInfos } from "../../About/MyInfos/data/i18n";
+import { getI18n } from "@/lib/i18n/server";
+import { SocialRow } from "../../About/Shared/SocialIconLink";
+import { CopyEmail } from "@/components/ui/copy-email";
+import type { SocialLink } from "@/types/types";
 
-const GITHUB_URL = "https://github.com/caiooozs";
+const EMAIL = "caioccosta22@gmail.com";
 
-const navLinks = [
-  { href: "/", label: "All" },
-  { href: "/projects", label: "Projects" },
-  { href: "/about", label: "About" },
-  {href: "/contact", label: "Contact"}
-];
-
-const iconLinkClass =
-  "inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.05] text-white/70 ring-1 ring-inset ring-white/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#8B5CF6]/20 hover:text-white hover:ring-[#8B5CF6]/40";
-
-export default function Footer() {
+export default async function Footer() {
+  const { locale, t } = await getI18n();
   const hyphen = HyphenData[0];
+  const { name, role, socials } = getMyInfos(locale);
+
+  const navLinks = [
+    { href: "/", label: t.nav.all },
+    { href: "/#projects", label: t.nav.projects },
+    { href: "/about", label: t.nav.about },
+    { href: "/contact", label: t.nav.contact },
+  ];
   const year = new Date().getFullYear();
 
+  // redes do Caio (o e-mail ja esta acima) e o Discord da comunidade
+  const icons: SocialLink[] = [
+    ...socials.filter((social) => social.icon !== "mail"),
+    ...(hyphen.infos.discord_link
+      ? [{ label: "Discord", href: hyphen.infos.discord_link, icon: "discord" as const }]
+      : []),
+  ];
+
   return (
-    <FadeInAnimation animationDuration={0.3} viewPort>
-      <footer className="relative mt-auto w-full overflow-hidden border-t border-white/[0.08] bg-white/[0.02] text-white backdrop-blur-xl">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#8B5CF6]/70 to-transparent" />
+    <footer className="mt-auto w-full">
+      <div className="mx-auto w-full max-w-[60rem] px-5 pt-16 pb-10 sm:px-6">
+        <div
+          data-reveal="rise"
+          className="grid grid-cols-1 gap-10 border-t border-line pt-10 sm:grid-cols-[minmax(0,1fr)_auto_auto] sm:gap-16"
+        >
+          <div className="flex flex-col gap-1">
+            <p className="text-sm font-medium text-ink">{name}</p>
+            <p className="text-sm text-muted">{role}</p>
+            <CopyEmail email={EMAIL} className="mt-3" />
+          </div>
 
-        <div className="pointer-events-none absolute -bottom-32 left-1/2 h-64 w-full max-w-[36rem] -translate-x-1/2 rounded-full bg-[#8B5CF6]/15 blur-[120px]" />
-
-        <div className="relative mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="flex flex-col gap-3 lg:col-span-2">
-              <span className="text-2xl font-semibold tracking-tight">
-                <span className="bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">
-                  Caio
-                </span>
-                <span className="text-[#8B5CF6]">.</span>
-              </span>
-              <Badge
-                variant={"outline"}
-                className="w-fit rounded-full border-0 bg-[#8B5CF6]/10 px-3 py-1 text-[11px] font-medium tracking-wide text-[#c4b1ff] uppercase ring-1 ring-inset ring-[#8B5CF6]/30"
-              >
-                Frontend Developer
-              </Badge>
-              <a
-                href="mailto:caioccosta22@gmail.com"
-                className="max-w-sx text-sm leading-relaxed text-white/50 transition-all transform hover:font-bold hover:text-white"
-              >
-                caioccosta22@gmail.com
-              </a>
-            </div>
-
-            <div className="flex flex-col gap-3">
-              <span className="text-[11px] font-medium tracking-wide text-white/35 uppercase">
-                Navigation
-              </span>
-              <nav className="flex flex-col gap-2">
-                {navLinks.map(({ href, label }) => (
-                  <Link
-                    key={href}
-                    href={href}
-                    className="w-fit text-sm text-white/60 transition-colors duration-300 hover:text-white"
-                  >
+          <nav aria-label={t.footer.navigation} className="flex flex-col gap-2.5">
+            <p className="text-[0.8125rem] text-muted">{t.footer.navigation}</p>
+            <ul className="flex flex-col gap-1.5">
+              {navLinks.map(({ href, label }) => (
+                <li key={href}>
+                  <Link href={href} className="text-sm text-ink transition-colors hover:text-accent-ink">
                     {label}
                   </Link>
-                ))}
-              </nav>
-            </div>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-            <div className="flex flex-col gap-3">
-              <span className="text-[11px] font-medium tracking-wide text-white/35 uppercase">
-                Community
-              </span>
-              <Link
-                href={hyphen.website_link}
-                className="w-fit text-sm text-white/60 transition-colors duration-300 hover:text-white"
-              >
-                {hyphen.title}
-              </Link>
-
-              <div className="mt-1 flex flex-wrap items-center gap-2">
-                <Link
-                  href={GITHUB_URL}
-                  aria-label="GitHub"
-                  className={iconLinkClass}
-                >
-                  <GithubIcon />
-                </Link>
-                <Link
-                  href={hyphen.website_link}
-                  aria-label={hyphen.title}
-                  className={iconLinkClass}
-                >
-                  <GlobeIcon />
-                </Link>
-                {hyphen.infos.discord_link && (
-                  <Link
-                    href={hyphen.infos.discord_link}
-                    aria-label="Discord"
-                    className={iconLinkClass}
-                  >
-                    <DiscordIcon />
-                  </Link>
-                )}
-                {hyphen.infos.ig_link && (
-                  <Link
-                    href={hyphen.infos.ig_link}
-                    aria-label="Instagram"
-                    className={iconLinkClass}
-                  >
-                    <InstagramIcon />
-                  </Link>
-                )}
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 border-t border-white/[0.08] pt-6 sm:flex-row">
-            <span className="text-xs text-white/35">
-              © {year} Caio Cesar Costa
-            </span>
+          <div className="flex flex-col gap-2.5">
+            <p className="text-[0.8125rem] text-muted">{t.footer.community}</p>
+            <Link
+              href={hyphen.website_link}
+              className="w-fit text-sm text-ink transition-colors hover:text-accent-ink"
+            >
+              {hyphen.title}
+            </Link>
+            <SocialRow links={icons} className="mt-1" />
           </div>
         </div>
-      </footer>
-    </FadeInAnimation>
+
+        <p
+          data-reveal="rise"
+          style={{ "--i": 2 } as React.CSSProperties}
+          className="tabular mt-12 text-[0.8125rem] text-muted"
+        >© {year} {name}</p>
+      </div>
+    </footer>
   );
 }

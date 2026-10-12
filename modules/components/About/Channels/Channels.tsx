@@ -1,21 +1,16 @@
-import FadeInAnimation from "@/components/ui/fade-animation";
+import { HoverList } from "@/components/ui/hover-list";
 import ChannelCard from "./components/ChannelCard";
-import { ChannelsData } from "./data/data";
+import { getChannels } from "./data/i18n";
+import { getI18n } from "@/lib/i18n/server";
 
-export default function Channels() {
+export default async function Channels() {
+  const { locale } = await getI18n();
+
   return (
-    <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2">
-      {ChannelsData.map((channel, index) => (
-        <FadeInAnimation
-          key={channel.id}
-          animationDuration={0.3}
-          animationDelay={index * 0.1}
-          viewPort
-          className="h-full"
-        >
-          <ChannelCard {...channel} />
-        </FadeInAnimation>
+    <HoverList as="div" className="-mx-3 grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-6">
+      {getChannels(locale).map((channel, index) => (
+        <ChannelCard key={channel.id} {...channel} index={index} />
       ))}
-    </div>
+    </HoverList>
   );
 }

@@ -1,62 +1,78 @@
-import { Button } from "@/components/ui/button";
-import { WordRotate } from "@/components/ui/word-rotate";
 import Link from "next/link";
-import FadeInAnimation from "@/components/ui/fade-animation";
+import { ArrowDown, Download, MapPin } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
+import { Portrait } from "@/components/ui/portrait";
+import { getMyInfos } from "@/modules/components/About/MyInfos/data/i18n";
+import { getI18n } from "@/lib/i18n/server";
+import { SocialRow } from "@/modules/components/About/Shared/SocialIconLink";
 
-const words = [
-  "Frontend Developer",
-  "UX/UI Designer",
-  "Javascript Developer",
-  "React Developer",
-];
-const MainContent = () => {
+/** Apresentacao: o "Hello", a bio, as duas acoes e a foto no palco ao lado. */
+const MainContent = async () => {
+  const { locale, t } = await getI18n();
+  const { photo, photoAlt, location, socials } = getMyInfos(locale);
+
   return (
-    <>
-      <div className="flex min-h-[calc(100svh-var(--nav-h))] items-center justify-center px-6 py-16 text-white sm:px-8 md:min-h-[40rem]">
-        <div className="flex w-full max-w-3xl flex-col items-center gap-3 text-center">
-          <FadeInAnimation animationDuration={0.2}>
-            <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-              Hello, I'm <span className="text-[#8B5CF6]">Caio!</span>
-            </h1>
-          </FadeInAnimation>
-          <FadeInAnimation
-            animationDuration={0.2}
-            animationDelay={0.2}
-            className="max-w-prose text-sm font-light text-balance text-white/80 sm:text-base md:w-2/3"
+    <section className="grid grid-cols-1 items-end gap-10 pt-10 sm:pt-12 md:grid-cols-[minmax(0,1fr)_17rem] md:gap-12 lg:grid-cols-[minmax(0,1fr)_22.5rem]">
+      <div className="flex flex-col">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={photo}
+          alt=""
+          width={56}
+          height={56}
+          className="enter mb-6 size-14 rounded-full object-cover object-[58%_30%] ring-1 ring-line md:hidden"
+        />
+
+        <h1
+          className="enter text-[2.375rem] leading-[1.05] font-semibold tracking-[-0.04em] text-ink sm:text-[2.875rem]"
+          style={{ "--i": 0 } as React.CSSProperties}
+        >
+          {t.home.hello}
+          <span className="text-accent">{t.home.name}</span>
+        </h1>
+
+        <p
+          className="enter mt-5 max-w-[33rem] text-[1.0625rem] leading-relaxed text-muted"
+          style={{ "--i": 1 } as React.CSSProperties}
+        >
+          {t.home.bio}
+        </p>
+
+        <div
+          className="enter mt-8 flex flex-wrap items-center gap-2"
+          style={{ "--i": 2 } as React.CSSProperties}
+        >
+          <Link href="#projects" className={buttonVariants({ size: "lg", className: "group" })}>
+            {t.home.goToProjects}
+            <ArrowDown className="transition-[translate] duration-300 ease-out-expo group-hover:translate-y-0.5" />
+          </Link>
+          <a
+            href="/caio_tech_cv.pdf"
+            download="caio_tech_cv.pdf"
+            className={buttonVariants({ variant: "ghost", size: "lg" })}
           >
-            <p className="">
-              Frontend developer focused on building fast, accessible interfaces
-              with an eye for detail. I work mainly with React, Next.js and
-              TypeScript
-            </p>
-          </FadeInAnimation>
-          <div className="mt-4 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row sm:gap-5">
-            <FadeInAnimation animationDuration={0.3} animationDelay={0.3}>
-              <Link href={"#projects"} className="w-full sm:w-auto">
-                <Button size={"lg"} className={"h-12 w-full sm:w-32"}>
-                  Go to Projects
-                </Button>
-              </Link>
-            </FadeInAnimation>
-            <FadeInAnimation animationDuration={0.3} animationDelay={0.4}>
-              <a
-                href="/caio_tech_cv.pdf"
-                download="caio_tech_cv.pdf"
-                className="w-full sm:w-auto"
-              >
-                <Button
-                  size={"lg"}
-                  variant={"secondary"}
-                  className={"h-12 w-full sm:w-32"}
-                >
-                  Download CV
-                </Button>
-              </a>
-            </FadeInAnimation>
-          </div>
+            <Download />
+            {t.home.downloadCv}
+          </a>
+        </div>
+
+        <div
+          className="enter mt-8 flex flex-wrap items-center gap-x-4 gap-y-2"
+          style={{ "--i": 3 } as React.CSSProperties}
+        >
+          <span className="inline-flex items-center gap-1.5 text-sm text-muted">
+            <MapPin aria-hidden className="size-4 text-subtle" strokeWidth={1.75} />
+            {location}
+          </span>
+          <span aria-hidden className="hidden h-4 w-px bg-line sm:block" />
+          <SocialRow links={socials} className="sm:ml-0" />
         </div>
       </div>
-    </>
+
+      <div className="enter hidden md:block" style={{ "--i": 2 } as React.CSSProperties}>
+        <Portrait src={photo} alt={photoAlt} priority />
+      </div>
+    </section>
   );
 };
 

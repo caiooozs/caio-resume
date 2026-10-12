@@ -4,15 +4,17 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { ContactService } from "@/service/Contact/contact.service";
 import {
-  ContactSchema,
+  createContactSchema,
   type ContactFormData,
   type ContactFormErrors,
 } from "./Contact.model";
+import { useI18n } from "@/lib/i18n/client";
 
 const EMPTY_FORM: ContactFormData = { name: "", email: "", message: "" };
 
 export default function useContactViewModel() {
   const { sendMessage } = ContactService();
+  const { t } = useI18n();
 
   const [form, setForm] = useState<ContactFormData>(EMPTY_FORM);
   const [errors, setErrors] = useState<ContactFormErrors>({});
@@ -36,7 +38,7 @@ export default function useContactViewModel() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const result = ContactSchema.safeParse(form);
+    const result = createContactSchema(t.contact.errors).safeParse(form);
 
     if (!result.success) {
       const fieldErrors: ContactFormErrors = {};
@@ -58,15 +60,13 @@ export default function useContactViewModel() {
     try {
       await sendMessage(result.data);
       setForm(EMPTY_FORM);
-      toast.success("Message sent!", {
-        description: "Thanks for reaching out — I'll get back to you soon.",
+      toast.success(t.contact.success, {
+        description: t.contact.successHint,
       });
     } catch (error) {
-      toast.error("Something went wrong", {
+      toast.error(t.contact.failure, {
         description:
-          error instanceof Error
-            ? error.message
-            : "Your message could not be sent. Please try again.",
+          error instanceof Error ? error.message : t.contact.failureHint,
       });
     } finally {
       setIsSubmitting(false);

@@ -4,40 +4,41 @@ import Timeline from "@/modules/components/About/Timeline/Timeline";
 import Channels from "@/modules/components/About/Channels/Channels";
 import Events from "@/modules/components/About/Events/Events";
 import CTA from "@/modules/components/About/CTA/CTA";
+import { getI18n } from "@/lib/i18n/server";
 
-export default function About() {
+/** A historia completa: quem e, onde trabalhou, onde fala com as pessoas e os eventos. */
+export default async function About() {
+  const { t } = await getI18n();
+
   return (
-    <div className="relative mx-auto w-full max-w-6xl px-4 pt-10 pb-20 sm:px-6 sm:pt-16 sm:pb-32">
-      <div className="flex flex-col gap-16 sm:gap-24">
-        <MyInfos />
+    <div className="mx-auto w-full max-w-[60rem] px-5 pb-12 sm:px-6">
+      <MyInfos />
 
-        <AboutSection
-          id="career"
-          title="Career"
-          subtitle="Where I have been, what I built and the stacks I used at each step."
-        >
-          <Timeline />
-        </AboutSection>
+      <AboutSection
+        id="career"
+        title={t.about.career}
+        subtitle={t.about.careerLead}
+      >
+        <Timeline />
+      </AboutSection>
 
-        <AboutSection
-          id="channels"
-          title="Channels"
-          subtitle="Where I share content and help build community."
-        >
-          <Channels />
-        </AboutSection>
+      <AboutSection
+        id="channels"
+        title={t.about.channels}
+        subtitle={t.about.channelsLead}
+      >
+        <Channels />
+      </AboutSection>
 
-        <AboutSection
-          id="events"
-          title="Events"
-          subtitle="Talks, meetups and hackathons I joined or helped to organize."
-          className="gap-10"
-        >
-          <Events />
-        </AboutSection>
+      <AboutSection
+        id="events"
+        title={t.about.events}
+        subtitle={t.about.eventsLead}
+      >
+        <Events />
+      </AboutSection>
 
-        <CTA />
-      </div>
+      <CTA />
     </div>
   );
 }

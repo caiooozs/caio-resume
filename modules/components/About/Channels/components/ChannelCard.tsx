@@ -1,96 +1,75 @@
 import Link from "next/link";
-import {
-  GlassCard,
-  GlassCardBadge,
-  GlassCardContent,
-  GlassCardFooter,
-  GlassCardHeader,
-  GlassCardLabel,
-  GlassCardTitle,
-  GlassIconButton,
-} from "@/components/ui/glass-card";
+import { UsersRound } from "lucide-react";
 import { ChannelCardProps } from "@/types/types";
-import SocialIconLink from "../../Shared/SocialIconLink";
-import { ArrowUpRightIcon, GlobeIcon } from "@animateicons/react/lucide";
-import { Play, UsersRound } from "lucide-react";
+import { ExternalArrow } from "@/components/ui/kit";
+import SocialIconLink, { YoutubeGlyph } from "../../Shared/SocialIconLink";
+import { getI18n } from "@/lib/i18n/server";
 
-export default function ChannelCard({
+/** Um canal ou comunidade: a area inteira abre o link principal; as redes ficam por cima. */
+export default async function ChannelCard({
   id,
   badge,
   title,
   desc,
-  accent,
   link,
   linkLabel,
   stats,
   socials,
-}: ChannelCardProps) {
+  index = 0,
+}: ChannelCardProps & { index?: number }) {
+  const { t } = await getI18n();
   const isYoutube = id === "youtube";
 
   return (
-    <GlassCard accent={accent} glyph={isYoutube ? "▶" : "–"}>
-      <GlassCardHeader>
-        <div className="flex min-w-0 flex-col gap-3">
-          <GlassCardBadge accent={accent}>
-            {isYoutube ? (
-              <Play className="size-3 fill-current" />
-            ) : (
-              <UsersRound className="size-3" />
-            )}
-            {badge}
-          </GlassCardBadge>
+    <article
+      data-row
+      data-reveal="rise"
+      style={{ "--i": index } as React.CSSProperties}
+      className="group relative flex flex-col gap-2 rounded-xl px-3 py-4"
+    >
+      <div className="flex items-center gap-2.5">
+        {isYoutube ? (
+          <YoutubeGlyph className="size-[18px] shrink-0 text-muted transition-colors group-hover:text-ink" />
+        ) : (
+          <UsersRound aria-hidden className="size-[18px] shrink-0 text-muted transition-colors group-hover:text-ink" strokeWidth={1.75} />
+        )}
+        <h3 className="text-base font-medium text-ink">
+          <Link
+            href={link}
+            className="outline-none after:absolute after:inset-0 after:rounded-xl focus-visible:after:outline-2 focus-visible:after:outline-accent"
+          >
+            {title}
+          </Link>
+        </h3>
+        <ExternalArrow className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-ink" />
+      </div>
+      <p className="text-[0.8125rem] text-muted">{badge}</p>
 
-          <GlassCardTitle>{title}</GlassCardTitle>
-        </div>
+      <p className="mt-1 text-[0.9375rem] leading-relaxed text-muted">{desc}</p>
 
-        <Link href={link} aria-label={title}>
-          <GlassIconButton>
-            <ArrowUpRightIcon />
-          </GlassIconButton>
-        </Link>
-      </GlassCardHeader>
-
-      <GlassCardContent className="flex flex-col gap-5">
-        <p className="text-sm leading-relaxed font-light text-white/60">
-          {desc}
-        </p>
-
-        <div className="grid grid-cols-3 gap-3">
-          {stats?.map(({ label, value }) => (
-            <div
-              key={label}
-              className="flex flex-col items-center gap-0.5 rounded-2xl bg-white/[0.03] px-2 py-3 text-center ring-1 ring-inset ring-white/10"
-            >
-              <span className="text-base font-semibold text-white">
-                {value}
-              </span>
-              <span className="text-[10px] tracking-wide text-white/35 uppercase">
-                {label}
-              </span>
+      {stats && stats.length > 0 && (
+        <dl className="mt-1 flex flex-wrap gap-x-6 gap-y-2">
+          {stats.map(({ label, value }) => (
+            <div key={label} className="flex flex-col">
+              <dt className="order-2 text-[0.8125rem] text-muted">{label}</dt>
+              <dd className="tabular order-1 text-base font-medium text-ink">{value}</dd>
             </div>
           ))}
-        </div>
+        </dl>
+      )}
 
-        <Link
-          href={link}
-          className="group/link inline-flex w-full max-w-full items-center gap-2 rounded-full bg-white/[0.04] px-4 py-2 text-xs text-white/70 ring-1 ring-inset ring-white/10 transition-all duration-300 hover:bg-[#8B5CF6]/15 hover:text-white hover:ring-[#8B5CF6]/40 sm:w-auto sm:text-sm"
-        >
-          <GlobeIcon className="size-4 shrink-0" />
-          <span className="min-w-0 truncate">{linkLabel}</span>
-        </Link>
-      </GlassCardContent>
+      <p className="text-[0.9375rem] text-ink">{linkLabel}</p>
 
-      <GlassCardFooter>
-        <div className="flex w-full flex-wrap items-center justify-between gap-3">
-          <GlassCardLabel>{isYoutube ? "Watch now" : "Join us"}</GlassCardLabel>
-
-          <div className="flex items-center gap-2">
-            {socials.map((social) => (
-              <SocialIconLink key={social.label} {...social} />
-            ))}
-          </div>
-        </div>
-      </GlassCardFooter>
-    </GlassCard>
+      <div className="relative z-10 mt-2 flex items-center gap-1">
+        <span className="mr-1 text-[0.8125rem] text-muted">{isYoutube ? t.home.watchNow : t.home.joinUs}</span>
+        {socials.map((social) => (
+          <SocialIconLink
+            key={social.label}
+            {...social}
+            className="size-8 hover:bg-raised-strong [&_svg]:size-4"
+          />
+        ))}
+      </div>
+    </article>
   );
 }

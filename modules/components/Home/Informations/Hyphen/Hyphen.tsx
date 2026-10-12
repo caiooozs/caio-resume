@@ -1,22 +1,21 @@
-import FadeInAnimation from "@/components/ui/fade-animation";
 import HyphenCard from "./components/HyphenCard";
-import { HyphenData } from "./data/data";
+import { getHyphen } from "./data/i18n";
+import { getI18n } from "@/lib/i18n/server";
 
-export default function Hyphen() {
+export default async function Hyphen() {
+  const { locale } = await getI18n();
+
   return (
-    <div className="relative grid grid-cols-1 gap-4 sm:gap-6">
-      <FadeInAnimation animationDuration={0.2} viewPort>
-        {HyphenData.map((hd) => (
-          <div key={hd.title} className="h-full">
-            <HyphenCard
-              title={hd.title}
-              website_link={hd.website_link}
-              infos={hd.infos}
-              desc={hd.desc}
-            />
-          </div>
-        ))}
-      </FadeInAnimation>
-    </div>
+    <>
+      {getHyphen(locale).map((hd) => (
+        <HyphenCard
+          key={hd.title}
+          title={hd.title}
+          website_link={hd.website_link}
+          infos={hd.infos}
+          desc={hd.desc}
+        />
+      ))}
+    </>
   );
 }

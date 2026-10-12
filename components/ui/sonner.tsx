@@ -1,12 +1,15 @@
 "use client"
 
 import { Toaster as Sonner } from "sonner"
+import { useTheme } from "@/lib/theme"
 
-/** Toaster do site: mesmo vidro escuro / accent roxo dos GlassCards. */
+/** Toasts no tom do site: superficie do tema, borda fina, icone na cor do status. */
 function Toaster({ ...props }: React.ComponentProps<typeof Sonner>) {
+  const theme = useTheme()
+
   return (
     <Sonner
-      theme="dark"
+      theme={theme}
       // topo/centro: o form fica no meio da pagina, o canto inferior passava batido
       position="top-center"
       duration={8000}
@@ -14,13 +17,12 @@ function Toaster({ ...props }: React.ComponentProps<typeof Sonner>) {
       toastOptions={{
         classNames: {
           toast:
-            "rounded-xl border-0 bg-black/80 text-white ring-1 ring-inset ring-white/10 backdrop-blur-xl shadow-[0_20px_60px_-20px_rgba(139,92,246,0.55)]",
-          title: "text-sm font-semibold",
-          description: "text-white/60",
-          success: "ring-[#8B5CF6]/40",
-          error: "ring-red-500/40",
-          closeButton:
-            "bg-white/10 text-white/70 ring-1 ring-inset ring-white/15 hover:bg-white/20 hover:text-white",
+            "rounded-2xl border border-line bg-bg font-sans text-ink shadow-[0_12px_32px_-8px_rgb(0_0_0/0.18)]",
+          title: "text-[0.9375rem] font-medium",
+          description: "text-muted",
+          success: "[&_[data-icon]]:text-accent",
+          error: "[&_[data-icon]]:text-danger",
+          closeButton: "border-line bg-bg text-muted hover:bg-raised hover:text-ink",
         },
       }}
       {...props}

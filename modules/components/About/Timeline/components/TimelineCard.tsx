@@ -1,16 +1,9 @@
-import {
-  GlassCard,
-  GlassCardBadge,
-  GlassCardContent,
-  GlassCardFooter,
-  GlassCardHeader,
-  GlassCardLabel,
-  GlassCardTitle,
-} from "@/components/ui/glass-card";
 import { TimelineCardProps } from "@/types/types";
-import { Briefcase, CalendarDays, MapPin } from "lucide-react";
+import { Status, StackList } from "@/components/ui/kit";
+import { getI18n } from "@/lib/i18n/server";
 
-export default function TimelineCard({
+/** Um emprego: periodo, estado, local e contrato numa coluna; cargo, empresa, descricao e stack na outra. */
+export default async function TimelineCard({
   company,
   role,
   period,
@@ -21,61 +14,40 @@ export default function TimelineCard({
   current,
   index,
 }: TimelineCardProps) {
+  const { t } = await getI18n();
+
   return (
-    <GlassCard glyph={String(index + 1).padStart(2, "0")}>
-      <GlassCardHeader>
-        <div className="flex min-w-0 flex-col gap-3">
-          <GlassCardBadge>
-            <Briefcase className="size-3" />
-            {contract}
-          </GlassCardBadge>
-
-          <GlassCardTitle>{role}</GlassCardTitle>
-
-          <span className="text-xl text-white">{company}</span>
-        </div>
-
+    <li
+      data-reveal="rise"
+      style={{ "--i": index } as React.CSSProperties}
+      className="grid grid-cols-1 gap-3 sm:grid-cols-[11rem_minmax(0,1fr)] sm:gap-10 md:grid-cols-[17rem_minmax(0,1fr)] md:gap-12 lg:grid-cols-[22.5rem_minmax(0,1fr)]">
+      <div className="flex flex-col gap-1 text-[0.8125rem] text-muted sm:pt-[0.2rem]">
+        <span className="tabular text-ink/80">{period}</span>
+        <span className="flex flex-wrap items-center gap-x-2">
+          {location}
+          <span aria-hidden className="text-subtle">/</span>
+          {contract}
+        </span>
         {current && (
-          <span className="inline-flex shrink-0 items-center gap-2 rounded-full bg-emerald-500/10 px-3 py-1 text-[11px] font-medium tracking-wide text-emerald-300 uppercase ring-1 ring-inset ring-emerald-500/30">
-            <span className="relative flex size-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/70" />
-              <span className="relative inline-flex size-1.5 rounded-full bg-emerald-400" />
-            </span>
-            Current
-          </span>
+          <Status pingOnReveal className="mt-1">
+            {t.about.current}
+          </Status>
         )}
-      </GlassCardHeader>
+      </div>
 
-      <GlassCardContent className="flex flex-col gap-4">
-        <p className="text-sm leading-relaxed font-light text-white/60">
-          {desc}
-        </p>
-
-        <div className="flex flex-wrap gap-2">
-          {stack?.map((tech) => (
-            <span
-              key={tech}
-              className="rounded-full bg-white/[0.04] px-3 py-1 text-[11px] text-white/60 ring-1 ring-inset ring-white/10"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-      </GlassCardContent>
-
-      <GlassCardFooter>
-        <div className="flex w-full flex-wrap items-center justify-between gap-3">
-          <GlassCardLabel className="inline-flex items-center gap-1.5">
-            <CalendarDays className="size-3.5" />
-            {period}
-          </GlassCardLabel>
-
-          <span className="inline-flex items-center gap-1.5 text-xs text-white/45">
-            <MapPin className="size-3.5" />
-            {location}
+      <div className="flex flex-col gap-2">
+        <h3 className="text-base leading-snug font-medium text-ink">
+          {role}
+          <span className="font-normal text-muted">
+            {" "}
+            {t.about.at} {company}
           </span>
-        </div>
-      </GlassCardFooter>
-    </GlassCard>
+        </h3>
+        {desc && <p className="max-w-[62ch] text-[0.9375rem] leading-relaxed text-muted">{desc}</p>}
+        {stack && stack.length > 0 && (
+          <StackList items={stack.map((item) => t.home.stackTerms[item] ?? item)} className="mt-1" />
+        )}
+      </div>
+    </li>
   );
 }

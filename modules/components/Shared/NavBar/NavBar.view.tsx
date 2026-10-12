@@ -1,39 +1,81 @@
 import Link from "next/link";
+import { motion } from "motion/react";
 import { NavBarViewProps } from "./NavBar.model";
-import FadeInAnimation from "@/components/ui/fade-animation";
+import { MyInfosData } from "@/modules/components/About/MyInfos/data/data";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { LanguageSwitcher } from "@/components/ui/language-switcher";
+import { useI18n } from "@/lib/i18n/client";
+import { cn } from "@/lib/utils";
 
-const links = [
-  { href: "/", label: "All" },
-  { href: "/#projects", label: "Projects" },
-  { href: "/about", label: "About" },
-  {href: "/contact", label: "Contact"}
-];
+/**
+ * Barra fixa no topo: retrato e nome a esquerda, paginas no meio, idioma e
+ * tema a direita. A pilula da pagina atual desliza de um link para o outro;
+ * a borda inferior so aparece depois que a pagina rola.
+ */
+export const NavBarView = ({ pathname }: NavBarViewProps) => {
+  const { photo, name } = MyInfosData;
+  const { t } = useI18n();
 
-export const NavBarView = ({ scrolled }: NavBarViewProps) => {
+  const links = [
+    { href: "/", label: t.nav.all },
+    { href: "/#projects", label: t.nav.projects },
+    { href: "/about", label: t.nav.about },
+    { href: "/contact", label: t.nav.contact },
+  ];
+
   return (
-    <>
-      <FadeInAnimation animationDuration={0.3}>
-        <nav
-          className={[
-            "fixed top-0 left-0 z-50 h-(--nav-h) w-full",
-            "flex items-center justify-center border-b border-white/10 text-white",
-            "transition-all duration-300 ease-out",
-            scrolled
-              ? "px-4 sm:px-6 bg-black/50 backdrop-blur-md shadow-sm shadow-white/5"
-              : "px-4 sm:px-8 md:px-12 bg-transparent",
-          ].join(" ")}
+    <header className="nav-edge sticky top-0 z-40 border-b border-transparent bg-bg/75 backdrop-blur-lg backdrop-saturate-150">
+      <nav
+        aria-label={t.nav.label}
+        className="mx-auto flex h-(--nav-h) w-full max-w-[60rem] items-center gap-1 px-3 sm:gap-4 sm:px-6"
+      >
+        <Link
+          href="/"
+          aria-label={`${name}, ${t.nav.home}`}
+          className="group mr-auto hidden min-w-0 items-center gap-2.5 rounded-full py-1 pr-2 min-[420px]:flex"
         >
-          <div className="flex w-full items-center justify-center gap-4 overflow-x-auto sm:gap-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {links.map(({ href, label }) => (
-              <Link key={href} href={href} className="shrink-0">
-                <span className="text-sm font-medium text-gray-400 transition-all transform hover:font-semibold hover:text-white sm:text-base">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={photo}
+            alt=""
+            className="size-7 shrink-0 rounded-full object-cover object-[60%_30%] ring-1 ring-line"
+          />
+          <span className="hidden truncate text-sm font-medium text-ink md:inline">{name}</span>
+        </Link>
+
+        <ul className="mr-auto flex items-center min-[420px]:mr-0">
+          {links.map(({ href, label }) => {
+            const active = href === pathname;
+            return (
+              <li key={href}>
+                <Link
+                  href={href}
+                  aria-current={active ? "page" : undefined}
+                  className={cn(
+                    "relative isolate flex h-8 items-center rounded-full px-2 text-[0.8125rem] whitespace-nowrap transition-colors duration-200 sm:px-3 sm:text-sm",
+                    active ? "text-ink" : "text-muted hover:text-ink"
+                  )}
+                >
+                  {active && (
+                    <motion.span
+                      layoutId="nav-active"
+                      aria-hidden
+                      className="absolute inset-0 -z-10 rounded-full bg-raised"
+                      transition={{ type: "spring", stiffness: 480, damping: 38 }}
+                    />
+                  )}
                   {label}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </nav>
-      </FadeInAnimation>
-    </>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+
+        <div className="-mr-1.5 flex items-center">
+          <LanguageSwitcher />
+          <ThemeToggle />
+        </div>
+      </nav>
+    </header>
   );
 };

@@ -1,16 +1,11 @@
-import {
-  GlassCard,
-  GlassCardBadge,
-  GlassCardContent,
-  GlassCardFooter,
-  GlassCardHeader,
-  GlassCardLabel,
-  GlassCardTitle,
-} from "@/components/ui/glass-card";
-import { EventCardProps } from "@/types/types";
+import Image from "next/image";
 import { CalendarDays, MapPin, Ticket } from "lucide-react";
+import { EventCardProps } from "@/types/types";
+import { getI18n } from "@/lib/i18n/server";
 
-export default function EventCard({
+/** Um evento: a foto do time grande a esquerda; nome, papel, quando, onde e o relato a direita. */
+export default async function EventCard({
+  id,
   name,
   role,
   date,
@@ -19,53 +14,49 @@ export default function EventCard({
   tag,
   photos,
 }: EventCardProps) {
+  const { t } = await getI18n();
+
   return (
-    <GlassCard
-      glyph={<Ticket className="size-24 text-white/[0.03] sm:size-32" />}
+    <li
+      id={id}
+      data-reveal="rise"
+      className="grid grid-cols-1 items-start gap-6 md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] md:gap-10"
     >
-      <GlassCardHeader>
-        <div className="flex min-w-0 flex-col gap-3">
-          <GlassCardBadge>
-            <Ticket className="size-3" />
-            {tag}
-          </GlassCardBadge>
+      {photos && (
+        <figure className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-raised shadow-[0_1px_2px_rgb(0_0_0/0.06),0_16px_40px_-16px_rgb(0_0_0/0.3)] ring-1 ring-black/5 md:sticky md:top-[calc(var(--nav-h)+2rem)] dark:ring-white/8">
+          <Image
+            src={photos}
+            alt={name}
+            fill
+            sizes="(min-width: 960px) 30rem, (min-width: 768px) 52vw, 100vw"
+            // corta 5% da direita/baixo: a foto da UPE tem um artefato amarelo no canto
+            className="wipe origin-top-left scale-[1.05] object-cover"
+          />
+        </figure>
+      )}
 
-          <GlassCardTitle className="text-lg sm:text-xl">{name}</GlassCardTitle>
-        </div>
-
-        <span className="shrink-0 rounded-full bg-white/[0.05] px-3 py-1 font-mono text-xs text-white/60 ring-1 ring-inset ring-white/10">
-          {role}
-        </span>
-      </GlassCardHeader>
-
-      <GlassCardContent>
-        <p className="text-sm leading-relaxed font-light text-white/60">
-          {desc}
-        </p>
-        {photos && (
-          <div className="-mx-5 mt-4 p-4 overflow-hidden sm:-mx-6">
-            <img
-              src={photos}
-              alt={name}
-              className="aspect-[16/9] w-full object-cover object-center"
-            />
+      <div className="flex flex-col gap-3 md:pt-1">
+        <h3 className="text-xl leading-snug font-medium tracking-[-0.015em] text-ink">{name}</h3>
+        <p className="text-[0.9375rem] text-ink/80">{role}</p>
+        <dl className="flex flex-wrap gap-x-4 gap-y-1 text-[0.8125rem] text-muted">
+          <div className="inline-flex items-center gap-1.5">
+            <dt className="sr-only">{t.about.organizedWith}</dt>
+            <Ticket aria-hidden className="size-3.5 text-subtle" strokeWidth={1.75} />
+            <dd>{tag}</dd>
           </div>
-        )}
-      </GlassCardContent>
-
-      <GlassCardFooter>
-        <div className="flex w-full flex-wrap items-center justify-between gap-3">
-          <GlassCardLabel className="inline-flex items-center gap-1.5">
-            <CalendarDays className="size-3.5" />
-            {date}
-          </GlassCardLabel>
-
-          <span className="inline-flex items-center gap-1.5 text-xs text-white/45">
-            <MapPin className="size-3.5" />
-            {local}
-          </span>
-        </div>
-      </GlassCardFooter>
-    </GlassCard>
+          <div className="inline-flex items-center gap-1.5">
+            <dt className="sr-only">{t.about.date}</dt>
+            <CalendarDays aria-hidden className="size-3.5 text-subtle" strokeWidth={1.75} />
+            <dd className="tabular">{date}</dd>
+          </div>
+          <div className="inline-flex items-center gap-1.5">
+            <dt className="sr-only">{t.about.location}</dt>
+            <MapPin aria-hidden className="size-3.5 text-subtle" strokeWidth={1.75} />
+            <dd>{local}</dd>
+          </div>
+        </dl>
+        <p className="mt-2 text-[0.9375rem] leading-relaxed text-muted">{desc}</p>
+      </div>
+    </li>
   );
 }
