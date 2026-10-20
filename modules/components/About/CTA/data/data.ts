@@ -9,7 +9,7 @@ export const CTAData: AboutCTAProps = {
   },
   secondary: {
     label: "See projects",
-    href: "/#projects",
+    href: "/projects",
   },
   contacts: [
     { label: "E-mail", href: "mailto:caioccosta22@gmail.com", icon: "mail" },

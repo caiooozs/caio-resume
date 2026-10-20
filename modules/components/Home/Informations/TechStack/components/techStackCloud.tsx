@@ -6,7 +6,7 @@ import { cloudStacks } from "../Data/techStackData";
 import { useTheme } from "@/lib/theme";
 
 /** Logos pretos somem no fundo escuro: no tema escuro eles viram claros. */
-const DARK_LOGOS = new Set(["nextdotjs", "vercel", "github"]);
+const DARK_LOGOS = new Set(["nextdotjs", "github", "shadcnui", "modelcontextprotocol"]);
 
 /** A nuvem gira solta na pagina, com os logos na cor de cada marca. */
 export default function TechStackCloud() {

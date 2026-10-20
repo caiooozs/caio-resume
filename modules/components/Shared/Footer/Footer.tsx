@@ -15,7 +15,7 @@ export default async function Footer() {
 
   const navLinks = [
     { href: "/", label: t.nav.all },
-    { href: "/#projects", label: t.nav.projects },
+    { href: "/projects", label: t.nav.projects },
     { href: "/about", label: t.nav.about },
     { href: "/contact", label: t.nav.contact },
   ];

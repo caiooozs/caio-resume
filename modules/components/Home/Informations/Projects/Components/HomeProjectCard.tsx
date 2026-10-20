@@ -1,22 +1,24 @@
 import Link from "next/link";
 import { HomeProjectCardProps } from "@/types/types";
-import { ExternalArrow } from "@/components/ui/kit";
 import { TechList } from "@/components/ui/tech-list";
 import { getI18n } from "@/lib/i18n/server";
 import BuildingBadge from "./buildingBadge";
+import ProjectLinks from "./ProjectLinks";
 
 /**
- * Um projeto numa linha: numero, nome (a linha inteira abre o GitHub), estado,
- * descricao e as tecnologias em destaque, com o logo de cada uma. Os links
- * extras ficam a direita, acima do link da linha.
+ * Um projeto numa linha: numero, nome (a linha inteira abre os detalhes em
+ * /projects), estado, descricao e as tecnologias em destaque, com o logo de
+ * cada uma. GitHub e site ficam a direita, acima do link da linha.
  */
 export default async function HomeProjectCard({
   id,
+  slug,
   title,
   desc,
   stack,
   website,
   github,
+  privateRepo,
   building,
   index = 0,
 }: HomeProjectCardProps & { index?: number }) {
@@ -38,7 +40,7 @@ export default async function HomeProjectCard({
         <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
           <h3 className="flex min-w-0 items-center gap-2.5 text-base font-medium text-ink">
             <Link
-              href={github}
+              href={`/projects#${slug}`}
               className="rounded-sm outline-none after:absolute after:inset-0 after:rounded-xl focus-visible:after:outline-2 focus-visible:after:outline-offset-0 focus-visible:after:outline-accent"
             >
               {title}
@@ -46,18 +48,7 @@ export default async function HomeProjectCard({
             {building && <BuildingBadge label={t.home.building} />}
           </h3>
 
-          <div className="relative z-10 flex items-center gap-3.5 text-[0.8125rem] text-muted">
-            <Link href={github} className="group/link inline-flex items-center gap-1 transition-colors hover:text-ink">
-              {t.home.github}
-              <ExternalArrow />
-            </Link>
-            {website && (
-              <Link href={website} className="group/link inline-flex items-center gap-1 transition-colors hover:text-ink">
-                {t.home.website}
-                <ExternalArrow />
-              </Link>
-            )}
-          </div>
+          <ProjectLinks github={github} website={website} privateRepo={privateRepo} />
         </div>
 
         <p className="max-w-[58ch] text-[0.9375rem] leading-relaxed text-muted">{desc}</p>

@@ -1,14 +1,22 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { getCTA } from "./data/i18n";
 import { getI18n } from "@/lib/i18n/server";
 import { SocialRow } from "../Shared/SocialIconLink";
 
-/** Fechamento da /about: a pergunta grande, as duas acoes e os contatos diretos. */
-export default async function CTA() {
+/**
+ * Fechamento da /about (e da /projects): a pergunta grande, as duas acoes e
+ * os contatos diretos. Quem usa pode trocar a segunda acao.
+ */
+export default async function CTA({
+  secondary: secondaryOverride,
+}: {
+  secondary?: { label: string; href: string; download?: boolean };
+} = {}) {
   const { locale, t } = await getI18n();
-  const { badge, title, primary, secondary, contacts } = getCTA(locale);
+  const { badge, title, primary, secondary: secondaryData, contacts } = getCTA(locale);
+  const secondary = secondaryOverride ?? secondaryData;
 
   return (
     <section aria-labelledby="cta-title" className="mt-24 flex flex-col items-start gap-8 border-t border-line pt-14 sm:mt-28 sm:pt-16">
@@ -37,9 +45,20 @@ export default async function CTA() {
           {primary.label}
           <ArrowRight className="transition-[translate] duration-300 ease-out-expo group-hover:translate-x-0.5" />
         </Link>
-        <Link href={secondary.href} className={buttonVariants({ variant: "ghost", size: "lg" })}>
-          {secondary.label}
-        </Link>
+        {"download" in secondary && secondary.download ? (
+          <a
+            href={secondary.href}
+            download={secondary.href.split("/").pop()}
+            className={buttonVariants({ variant: "ghost", size: "lg" })}
+          >
+            <Download />
+            {secondary.label}
+          </a>
+        ) : (
+          <Link href={secondary.href} className={buttonVariants({ variant: "ghost", size: "lg" })}>
+            {secondary.label}
+          </Link>
+        )}
       </div>
 
       <div

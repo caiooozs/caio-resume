@@ -50,19 +50,38 @@ const es: Dictionary = {
     noVideos: "Aún no hay videos publicados",
     noVideosHint: "Los nuevos videos aparecen aquí automáticamente",
     events: "Eventos",
+    privateRepo: "Repositorio privado",
+    seeDetails: "Ver detalles",
     stackLabels: {
       frontend: "Frontend",
       tools: "Herramientas",
       design: "Diseño",
       db: "Base de datos",
       architecture: "Arquitectura",
+      ai: "IA",
     },
     stackTerms: {
       Prototyping: "Prototipado",
       "MVVM Architecture": "Arquitectura MVVM",
       "Computer Maintenance": "Mantenimiento de computadoras",
       "UX/UI Design": "Diseño UX/UI",
+      "UI/UX Design": "Diseño UI/UX",
+      "API integration": "Integración de APIs",
+      "MCP servers (Figma)": "Servidores MCP (Figma)",
+      Accessibility: "Accesibilidad",
     },
+  },
+  projects: {
+    title: "Proyectos",
+    metaDescription:
+      "Proyectos de Caio Cesar Costa, desarrollador frontend: qué hace cada uno, cómo está hecho y dónde verlo funcionando.",
+    intro:
+      "Apps que ya publiqué y productos que todavía estoy construyendo. Abre uno para ver qué hace, cómo está hecho y dónde encontrarlo.",
+    expandAll: "Abrir todos",
+    collapseAll: "Cerrar todos",
+    overview: "Descripción general",
+    whatItDoes: "Qué hace",
+    screenshotAlt: "Página de inicio de {title}",
   },
   about: {
     career: "Trayectoria",

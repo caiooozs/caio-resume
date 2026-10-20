@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { SectionHeading } from "@/components/ui/kit";
 import Projects from "./Projects/Projects";
 import Community from "./Community/Community";
@@ -17,9 +19,24 @@ const Informations = async () => {
           aria-labelledby="projects-title"
           className="flex flex-col gap-3"
         >
-          <SectionHeading id="projects-title" count={HomeProjects.length}>
-            {t.home.projects}
-          </SectionHeading>
+          <div className="flex items-baseline justify-between gap-3">
+            <SectionHeading id="projects-title" count={HomeProjects.length}>
+              {t.home.projects}
+            </SectionHeading>
+            <Link
+              href="/projects"
+              data-reveal="rise"
+              style={{ "--d": "160ms" } as React.CSSProperties}
+              className="group/link inline-flex items-center gap-1 text-[0.8125rem] text-muted transition-colors hover:text-ink"
+            >
+              {t.home.seeDetails}
+              <ArrowRight
+                aria-hidden
+                strokeWidth={1.75}
+                className="size-3.5 shrink-0 text-subtle transition-[translate,color] duration-300 ease-out-expo group-hover/link:translate-x-0.5 group-hover/link:text-ink"
+              />
+            </Link>
+          </div>
           <Projects />
         </section>
 

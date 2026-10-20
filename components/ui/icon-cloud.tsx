@@ -78,6 +78,8 @@ export function IconCloud({
 
     const items = icons ?? images ?? []
     imagesLoadedRef.current = new Array(items.length).fill(false)
+    // imagens de uma troca anterior (ex.: tema) nao podem marcar a lista nova como carregada
+    let stale = false
 
     const newIconCanvases = items.map((item, index) => {
       const offscreen = document.createElement("canvas")
@@ -92,6 +94,7 @@ export function IconCloud({
           img.crossOrigin = "anonymous"
           img.src = items[index] as string
           img.onload = () => {
+            if (stale) return
             offCtx.clearRect(0, 0, offscreen.width, offscreen.height)
 
             // Create circular clipping path
@@ -112,6 +115,7 @@ export function IconCloud({
           const img = new Image()
           img.src = "data:image/svg+xml;base64," + btoa(svgString)
           img.onload = () => {
+            if (stale) return
             offCtx.clearRect(0, 0, offscreen.width, offscreen.height)
             offCtx.drawImage(img, 0, 0)
             imagesLoadedRef.current[index] = true
@@ -122,6 +126,9 @@ export function IconCloud({
     })
 
     iconCanvasesRef.current = newIconCanvases
+    return () => {
+      stale = true
+    }
   }, [icons, images])
 
   // Generate initial icon positions on a sphere

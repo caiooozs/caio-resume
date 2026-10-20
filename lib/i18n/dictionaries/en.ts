@@ -48,15 +48,30 @@ const en = {
     noVideos: "No videos published yet",
     noVideosHint: "New uploads show up here automatically",
     events: "Events",
+    privateRepo: "Private repository",
+    seeDetails: "See details",
     stackLabels: {
       frontend: "Frontend",
       tools: "Tools",
       design: "Design",
       db: "Database",
       architecture: "Architecture",
+      ai: "AI",
     } as Record<string, string>,
     /** Termos da stack que mudam de idioma (nomes de tecnologia nao mudam). */
     stackTerms: {} as Record<string, string>,
+  },
+  projects: {
+    title: "Projects",
+    metaDescription:
+      "Projects by Caio Cesar Costa, frontend developer: what each one does, how it is built and where to see it running.",
+    intro:
+      "Apps I have shipped and products I am still building. Open one to see what it does, how it is built and where to find it.",
+    expandAll: "Expand all",
+    collapseAll: "Collapse all",
+    overview: "Overview",
+    whatItDoes: "What it does",
+    screenshotAlt: "{title} home page",
   },
   about: {
     career: "Career",

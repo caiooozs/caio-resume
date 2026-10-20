@@ -299,6 +299,57 @@
   }
 }
 
+/*
+ * Linhas que abrem (/projects). O painel cresce pela altura (grid 0fr -> 1fr);
+ * dentro dele, a tela se descobre de baixo para cima e os textos entram em
+ * foco, o mesmo material das entradas. Fechar e rapido e sem sequencia.
+ * Sem JS (sem html[data-motion]) os paineis ficam abertos.
+ */
+[data-panel] {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+[data-motion] [data-panel] {
+  grid-template-rows: 0fr;
+}
+[data-motion] [data-open] > [data-panel] {
+  grid-template-rows: 1fr;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-motion] [data-panel] {
+    transition: grid-template-rows 0.3s var(--ease-out-expo);
+  }
+  [data-motion] [data-open] > [data-panel] {
+    transition-duration: 0.55s;
+  }
+
+  [data-motion] [data-panel] [data-panel-item] {
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(6px);
+    transition: opacity 0.2s var(--ease-out-expo), transform 0.2s var(--ease-out-expo),
+      filter 0.2s var(--ease-out-expo);
+  }
+  [data-motion] [data-open] [data-panel-item] {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition-property: opacity, transform, filter;
+    transition-duration: 0.6s, 0.8s, 0.6s;
+    transition-delay: calc(var(--i, 0) * 60ms + 160ms);
+  }
+
+  [data-motion] [data-panel] .panel-wipe {
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path 0.3s var(--ease-out-expo);
+  }
+  [data-motion] [data-open] .panel-wipe {
+    clip-path: inset(0 0 0 0);
+    transition: clip-path 0.9s var(--ease-out-expo) 0.08s;
+  }
+}
+
 /* rede de seguranca: se o observer nunca montar, tudo aparece em 3s */
 @keyframes reveal-failsafe {
   to {

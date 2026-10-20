@@ -3,6 +3,7 @@ import { Project } from "@/types/types";
 export const HomeProjects: Project[] = [
   {
     id: "01",
+    slug: "countries-app",
     title: "Countries App",
     desc: "Application developed with Next.js and TypeScript for looking up countries, focusing on user experience, code organization, and best practices",
     stack: [
@@ -17,10 +18,20 @@ export const HomeProjects: Project[] = [
       "MVVM Architecture",
     ],
     github: "https://github.com/caiooozs/countries-app",
+    website: "https://countries-app-delta-orpin.vercel.app",
     building: false,
+    overview:
+      "Country data comes from the public REST Countries API, fetched with Axios and managed by React Query. Each screen is split into a model, a view and a view model, and the data hooks live inside their feature folder.",
+    highlights: [
+      "Featured countries on the home page, with flag, population and region",
+      "Search by name and filter by subregion on the All Countries page",
+      "A detail page for each country, with extra data and map links",
+    ],
+    image: { src: "/projects/countries-app-hero.png", width: 2880, height: 1280 },
   },
   {
     id: "02",
+    slug: "hyphenhub",
     title: "HypheHub",
     desc: "A system under development to keep students updated on news, events, activities, projects, and much more",
     stack: [
@@ -34,9 +45,19 @@ export const HomeProjects: Project[] = [
     github: "https://github.com/caiooozs/hyphen-community",
     website: "https://www.hyphencommunity.com.br/",
     building: false,
+    overview:
+      "Today it is live as the website of the Hyphen Community, the tech talent community I help lead. It speaks to students and people starting out in tech who are looking for networking, events and a first opportunity in the field.",
+    highlights: [
+      "A landing page that introduces the community, its channels and its team",
+      "One step into the community through Discord, Instagram or WhatsApp",
+      "HyphenLab, the community's next product, announced as coming soon",
+      "Campaign pages such as Agosto Lilás",
+    ],
+    image: { src: "/projects/hyphenhub.png", width: 2880, height: 1800 },
   },
   {
     id: "03",
+    slug: "zeroaomei",
     title: "ZeroAoMEI",
     desc: "A platform to help micro-entrepreneurs professionalize and manage their businesses simply, quickly, and easily",
     stack: [
@@ -52,12 +73,22 @@ export const HomeProjects: Project[] = [
       "zod",
       "Vercel",
     ],
-    github: "https://github.com/caiooozs/zerotomei-front",
+    github: "https://github.com/caiooozs/zero-to-mei-front",
+    privateRepo: true,
     website: "",
     building: true,
+    overview:
+      "A web app that takes Brazilian micro-entrepreneurs from informal work to a registered MEI, then keeps the business organized, in plain language instead of accountant jargon. It is one of the two products I'm building at Hyphen, the startup I founded.",
+    highlights: [
+      "Guides for opening a MEI, paying the monthly DAS and filing the annual declaration",
+      "Monthly and yearly obligations, with reminders",
+      "Business money kept apart from personal money: income, expenses and a monthly overview chart",
+      "Designed phone first, for one-handed use",
+    ],
   },
   {
     id: "04",
+    slug: "ubsstock",
     title: "UBSstock",
     desc: "Pharmaceutical management system for monitoring and controlling sales and medication inventory across all basic health units in the municipality of Igarassu.",
     stack: [
@@ -71,7 +102,16 @@ export const HomeProjects: Project[] = [
       "MVVM Architecture",
     ],
     github: "https://github.com/caiooozs/pharmacy-control",
+    privateRepo: true,
     website: "",
     building: true,
+    overview:
+      "It starts as a pilot in the pharmacy of a single Basic Health Unit (UBS) and is designed to grow to every unit in the municipality without rework. It is the second product I'm building at Hyphen, alongside ZeroAoMEI.",
+    highlights: [
+      "Entries and exits recorded at the pharmacy counter, so the balance on screen can be trusted",
+      "Each unit keeps its own categories and medicines, isolated by row-level security",
+      "A network admin panel that reads every unit",
+      "A Next.js front end that talks to a FastAPI back end, which queries Supabase with the user's own token",
+    ],
   },
 ];

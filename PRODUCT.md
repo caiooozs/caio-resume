@@ -23,7 +23,7 @@ A frontend developer (React, Next.js, TypeScript) who also runs a YouTube channe
 ## Operating Context
 
 - Next.js app (Next 16, React 19, Tailwind v4, shadcn `base-nova`, `motion`, `lenis`), deployed on Vercel at caiodev-olive.vercel.app.
-- Routes: `/` (intro, projects next to community: Hyphen, latest YouTube videos and events; then tech stack), `/about` (bio, career timeline, channels, events, closing CTA), `/contact` (message form).
+- Routes: `/` (intro, projects next to community: Hyphen, latest YouTube videos and events; then tech stack), `/projects` (every project as a row that opens in place: screenshot when the project is live, overview, what it does; `/projects#<slug>` opens that row; nav, footer and home rows link here), `/about` (bio, career timeline, channels, events, closing CTA), `/contact` (message form).
 - Latest videos come from the channel's RSS feed, server-fetched and revalidated hourly; an empty state exists.
 - Contact form validates with zod and posts to formsubmit.co.
 - Site copy is English by default, with Portuguese (pt-BR) and Spanish versions chosen from a flag menu in the nav (`lang` cookie; URLs do not change). The English data files stay the source of truth; translations live in each data folder's `i18n.ts` and in `lib/i18n/dictionaries`.
@@ -33,7 +33,7 @@ A frontend developer (React, Next.js, TypeScript) who also runs a YouTube channe
 
 - Every piece of displayed data stays as is: the data files under `modules/components/**/data`, hero copy, section copy, contact copy, links, and metadata. A redesign changes presentation only.
 - Contact form behavior (validation, errors, loading, toasts) and the YouTube feed must keep working.
-- Known pre-existing issue: the footer links to `/projects`, a route that does not exist (the navbar uses `/#projects`).
+- ZeroAoMEI and UBSstock repositories are private: the site shows "Private repository" instead of a GitHub link. Project overviews and highlights on `/projects` were drafted from the repos' own README/PRODUCT.md files (2026-10-19) and await Caio's review.
 
 ## Brand Commitments
 

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-12T12:01:16.892Z",
+  "generatedAt": "2026-10-19T12:00:00.000Z",
   "title": "Design System: Caio Cesar Costa",
   "extensions": {
     "colorMeta": {
@@ -338,7 +338,7 @@
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "The page hello on Home, About and Contact; one per page; 2.375rem below 640px."
+        "purpose": "The page hello on Home, About and Contact, and the Projects page title with its Muted count at Lead size; one per page; 2.375rem below 640px."
       },
       "headline": {
         "displayName": "Headline",
@@ -346,7 +346,7 @@
       },
       "section": {
         "displayName": "Section",
-        "purpose": "Section headings, with an optional Muted tabular count."
+        "purpose": "Section headings, with an optional Muted tabular count; titles of the rows that open on Projects (h2)."
       },
       "title": {
         "displayName": "Title",
@@ -366,7 +366,7 @@
       },
       "meta": {
         "displayName": "Meta",
-        "purpose": "Dates, counts, ordinals, stack lists, sublist headings, status; tabular."
+        "purpose": "Dates, counts, ordinals, stack lists, sublist and panel sub-headings, status, project links, private-repository label, section links; tabular."
       }
     },
     "shadows": [
@@ -378,7 +378,7 @@
       {
         "name": "stage-photo-deep",
         "value": "0 1px 2px rgb(0 0 0 / 0.06), 0 16px 40px -16px rgb(0 0 0 / 0.3)",
-        "purpose": "Event photos on About."
+        "purpose": "Event photos on About and project screenshots on Projects (screenshots dim to brightness 0.86 in dark theme)."
       },
       {
         "name": "floating-preview",
@@ -468,6 +468,26 @@
         "purpose": "Brand background; wave frozen under reduced motion."
       },
       {
+        "name": "panel-open",
+        "value": "grid-template-rows 0fr to 1fr; 0.55s open, 0.3s close, ease-out-expo",
+        "purpose": "Rows that open on Projects; no-JS keeps panels open; instant under reduced motion."
+      },
+      {
+        "name": "panel-item",
+        "value": "from translateY(8px) blur(6px) opacity 0; 0.6s (transform 0.8s); delay i*60ms + 160ms",
+        "purpose": "Overview and What it does coming into focus inside an opening panel; close 0.2s unsequenced."
+      },
+      {
+        "name": "panel-wipe",
+        "value": "clip-path inset(100% 0 0 0) to inset(0); 0.9s ease-out-expo, 80ms delay; close 0.3s",
+        "purpose": "Project screenshot uncovering bottom to top as its panel opens."
+      },
+      {
+        "name": "disclosure-chevron",
+        "value": "rotate 180deg, 300ms ease-out-expo (Expand all chevron 200ms)",
+        "purpose": "Row chevron and Expand all chevron when open."
+      },
+      {
         "name": "reduced-motion",
         "value": "prefers-reduced-motion: reduce",
         "purpose": "Disables enter, reveal, spring travel, theme circle, preview and wave."
@@ -518,6 +538,14 @@
       "css": ".ds-btn-ghost { font-family: var(--font-geist), Geist, ui-sans-serif, system-ui, sans-serif; display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 20px; border-radius: 9999px; background: transparent; color: var(--muted, #636363); font-size: 14px; font-weight: 500; text-decoration: none; transition: background-color 200ms cubic-bezier(0.16, 1, 0.3, 1), color 200ms cubic-bezier(0.16, 1, 0.3, 1), scale 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-ghost:hover { background: var(--raised, #f0f0f0); color: var(--ink, #171717); } .ds-btn-ghost:active { scale: 0.97; } .ds-btn-ghost:focus-visible { outline: 2px solid var(--accent, #e8541e); outline-offset: 3px; }"
     },
     {
+      "name": "Expand All",
+      "kind": "button",
+      "refersTo": "button-ghost-sm",
+      "description": "Small ghost pill that opens or closes every row on Projects; chevron turns when all are open.",
+      "html": "<button class=\"ds-btn-ghost-sm\" type=\"button\">Expand all <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m6 9 6 6 6-6\"/></svg></button>",
+      "css": ".ds-btn-ghost-sm { font-family: var(--font-geist), Geist, ui-sans-serif, system-ui, sans-serif; display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border: 0; border-radius: 9999px; background: transparent; color: var(--muted, #636363); font-size: 13px; font-weight: 500; cursor: pointer; transition: background-color 200ms cubic-bezier(0.16, 1, 0.3, 1), color 200ms cubic-bezier(0.16, 1, 0.3, 1), scale 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-ghost-sm svg { transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-ghost-sm:hover { background: var(--raised, #f0f0f0); color: var(--ink, #171717); } .ds-btn-ghost-sm:active { scale: 0.97; } .ds-btn-ghost-sm:focus-visible { outline: 2px solid var(--accent, #e8541e); outline-offset: 3px; }"
+    },
+    {
       "name": "Icon Button",
       "kind": "button",
       "refersTo": "icon-button",
@@ -548,6 +576,14 @@
       "description": "A project as a row: ordinal, title, status, links, description, stack; raised highlight on hover.",
       "html": "<ul class=\"ds-rows\"><li class=\"ds-row\"><span class=\"ds-ord\">01</span><div class=\"ds-row-main\"><div class=\"ds-row-head\"><a class=\"ds-row-title\" href=\"#\">Portfolio</a><span class=\"ds-status\"><i></i>Building</span><span class=\"ds-row-links\"><a href=\"#\">GitHub <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></a></span></div><p>Personal site and resume built with Next.js.</p><p class=\"ds-stack\">TypeScript, Next.js, Tailwind CSS</p></div></li></ul>",
       "css": ".ds-rows { font-family: var(--font-geist), Geist, ui-sans-serif, system-ui, sans-serif; list-style: none; margin: 0; padding: 0; max-width: 560px; } .ds-row { display: grid; grid-template-columns: 1.75rem minmax(0, 1fr); padding: 16px 12px; border-radius: 12px; transition: background-color 180ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-row:hover, .ds-row:focus-within { background: var(--raised, #f0f0f0); } .ds-ord { padding-top: 3px; font-size: 13px; color: var(--muted, #636363); font-variant-numeric: tabular-nums; } .ds-row-main { display: flex; flex-direction: column; gap: 6px; } .ds-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; } .ds-row-title { font-size: 16px; font-weight: 500; color: var(--ink, #171717); text-decoration: none; } .ds-row-title:focus-visible { outline: 2px solid var(--accent, #e8541e); outline-offset: 3px; border-radius: 6px; } .ds-row-links { margin-left: auto; font-size: 13px; } .ds-row-links a { display: inline-flex; align-items: center; gap: 4px; color: var(--muted, #636363); text-decoration: none; } .ds-row-links svg { color: var(--subtle, #8f8f8f); transition: translate 300ms cubic-bezier(0.16, 1, 0.3, 1), color 300ms; } .ds-row-links a:hover { color: var(--ink, #171717); } .ds-row-links a:hover svg { translate: 2px -2px; color: var(--ink, #171717); } .ds-row p { margin: 0; max-width: 58ch; font-size: 15px; line-height: 1.625; color: var(--muted, #636363); } .ds-row p.ds-stack { font-size: 13px; } .ds-status { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--accent-ink, #c2410c); } .ds-status i { width: 6px; height: 6px; border-radius: 9999px; background: var(--accent, #e8541e); }"
+    },
+    {
+      "name": "Row That Opens",
+      "kind": "custom",
+      "refersTo": "disclosure-row",
+      "description": "Projects page: the project row with a Section-size h2 button and a chevron column; opens in place onto the bare ground with screenshot, Overview and What it does.",
+      "html": "<ol class=\"ds-drows\"><li class=\"ds-drow ds-open\"><div class=\"ds-dhead\"><span class=\"ds-ord\">03</span><div class=\"ds-dmain\"><div class=\"ds-dtop\"><h2 class=\"ds-dtitle\"><button aria-expanded=\"true\">ZeroAoMEI</button><span class=\"ds-status\"><i></i>Building</span></h2><span class=\"ds-private\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect width=\"18\" height=\"11\" x=\"3\" y=\"11\" rx=\"2\" ry=\"2\"/><path d=\"M7 11V7a5 5 0 0 1 10 0v4\"/></svg>Private repository</span></div><p>A platform to help micro-entrepreneurs manage their businesses.</p></div><svg class=\"ds-chev\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m6 9 6 6 6-6\"/></svg></div><div class=\"ds-panel\"><figure class=\"ds-shot\"></figure><div class=\"ds-cols\"><div><h3>Overview</h3><p class=\"ds-over\">A web app that takes micro-entrepreneurs from informal work to a registered business.</p></div><div><h3>What it does</h3><ul><li>Monthly and yearly obligations, with reminders</li><li>Designed phone first</li></ul></div></div></div></li></ol>",
+      "css": ".ds-drows { font-family: var(--font-geist), Geist, ui-sans-serif, system-ui, sans-serif; list-style: none; margin: 0; padding: 0; max-width: 880px; } .ds-dhead { position: relative; display: grid; grid-template-columns: 1.75rem minmax(0, 1fr) auto; padding: 16px 12px; border-radius: 12px; transition: background-color 180ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-dhead:hover { background: var(--raised, #f0f0f0); } .ds-ord { padding-top: 5px; font-size: 13px; color: var(--muted, #636363); font-variant-numeric: tabular-nums; } .ds-dmain { display: flex; flex-direction: column; gap: 6px; min-width: 0; } .ds-dtop { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; } .ds-dtitle { display: flex; align-items: center; gap: 10px; margin: 0; font-size: 18px; font-weight: 500; letter-spacing: -0.015em; color: var(--ink, #171717); } .ds-dtitle button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-align: left; } .ds-dtitle button::after { content: \"\"; position: absolute; inset: 0; border-radius: 12px; } .ds-dtitle button:focus-visible { outline: none; } .ds-dtitle button:focus-visible::after { outline: 2px solid var(--accent, #e8541e); } .ds-status { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 400; letter-spacing: normal; color: var(--accent-ink, #c2410c); } .ds-status i { width: 6px; height: 6px; border-radius: 9999px; background: var(--accent, #e8541e); } .ds-private { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted, #636363); } .ds-private svg { color: var(--subtle, #8f8f8f); } .ds-dmain p { margin: 0; max-width: 58ch; font-size: 15px; line-height: 1.625; color: var(--muted, #636363); } .ds-chev { margin: 6px 0 0 14px; color: var(--subtle, #8f8f8f); transition: rotate 300ms cubic-bezier(0.16, 1, 0.3, 1), color 300ms; } .ds-dhead:hover .ds-chev { color: var(--ink, #171717); } .ds-open .ds-chev { rotate: 180deg; } .ds-panel { display: flex; flex-direction: column; gap: 32px; padding: 12px 12px 48px calc(12px + 1.75rem); } .ds-shot { margin: 0; aspect-ratio: 2880 / 1280; border-radius: 16px; background: var(--raised, #f0f0f0); box-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 16px 40px -16px rgb(0 0 0 / 0.3), 0 0 0 1px rgb(0 0 0 / 0.05); } .ds-cols { display: grid; grid-template-columns: minmax(0, 1fr) 22.5rem; gap: 48px; } .ds-cols h3 { margin: 0 0 8px; font-size: 13px; font-weight: 400; color: var(--muted, #636363); } .ds-over { margin: 0; max-width: 62ch; font-size: 15px; line-height: 1.625; color: color-mix(in oklab, var(--ink, #171717) 85%, transparent); } .ds-cols ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.625; color: var(--muted, #636363); } .ds-cols li { display: grid; grid-template-columns: 1rem minmax(0, 1fr); } .ds-cols li::before { content: \"\"; margin-top: 0.8rem; width: 8px; height: 1px; background: var(--subtle, #8f8f8f); }"
     },
     {
       "name": "Media Row",
@@ -609,7 +645,7 @@
       },
       {
         "name": "The Shared Axis Rule",
-        "body": "The right column is always 22.5rem at desktop; portrait, Community, icon cloud and timeline meta line up on it.",
+        "body": "The right column is always 22.5rem at desktop; portrait, Community, icon cloud, timeline meta and the What it does column of an open project line up on it.",
         "section": "layout"
       },
       {
@@ -629,7 +665,7 @@
       "Do keep controls as full pills: Ink primary, Ghost secondary, round icon buttons.",
       "Do use Signal Orange only for the name, live status, focus, caret, selection and the dot field; use Orange Ink for small orange text.",
       "Do separate with space first and a Line hairline only where structure needs one.",
-      "Do give photos 16px corners, a 1px ring and the Stage photo shadow; give in-row thumbnails 8px.",
+      "Do give photos and project screenshots 16px corners, a 1px ring and the Stage photo shadow; give in-row thumbnails 8px.",
       "Do animate with cubic-bezier(0.16, 1, 0.3, 1): page blocks blur in once (0.8s, 80ms stagger), About photos reveal on scroll, state changes take 160-200ms.",
       "Do design both themes from the same token names and check every surface in each.",
       "Do keep the dot field and icon cloud on every build."

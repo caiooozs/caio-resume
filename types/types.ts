@@ -1,11 +1,20 @@
 export interface Project {
   id: string;
+  /** Ancora do projeto em /projects (/projects#countries-app). */
+  slug: string;
   title: string;
   desc: string;
   stack: string[];
   website?: string;
   github: string;
+  /** Repositorio fechado: mostra o rotulo no lugar do link (que daria 404). */
+  privateRepo?: boolean;
   building: boolean;
+  /** Detalhes que aparecem quando a linha abre em /projects. */
+  overview?: string;
+  highlights?: string[];
+  /** Tela do projeto no ar, em public/projects, com as medidas reais (a moldura segue a proporcao). */
+  image?: { src: string; width: number; height: number };
 }
 
 export interface HomeProjectCardProps extends Project {}
