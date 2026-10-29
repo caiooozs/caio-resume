@@ -10,6 +10,8 @@ import {
   siSupabase,
   siTailwindcss,
   siTypescript,
+  siVite,
+  siVitest,
   siZod,
   type SimpleIcon,
 } from "simple-icons";
@@ -29,6 +31,8 @@ const LOGOS: Record<string, SimpleIcon> = {
   "shadcn/ui": siShadcnui,
   supabase: siSupabase,
   zod: siZod,
+  vite: siVite,
+  vitest: siVitest,
   html5: siHtml5,
   html: siHtml5,
   css3: siCss,

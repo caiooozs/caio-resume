@@ -42,6 +42,7 @@ const es: Dictionary = {
     building: "En construcción",
     github: "GitHub",
     website: "Sitio web",
+    post: "Post en LinkedIn",
     builtWith: "Hecho con",
     myCommunity: "Mi comunidad",
     joinUs: "Únete",

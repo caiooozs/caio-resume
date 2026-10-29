@@ -19,6 +19,7 @@ export default async function HomeProjectCard({
   website,
   github,
   privateRepo,
+  post,
   building,
   index = 0,
 }: HomeProjectCardProps & { index?: number }) {
@@ -48,7 +49,7 @@ export default async function HomeProjectCard({
             {building && <BuildingBadge label={t.home.building} />}
           </h3>
 
-          <ProjectLinks github={github} website={website} privateRepo={privateRepo} />
+          <ProjectLinks github={github} website={website} privateRepo={privateRepo} post={post} />
         </div>
 
         <p className="max-w-[58ch] text-[0.9375rem] leading-relaxed text-muted">{desc}</p>

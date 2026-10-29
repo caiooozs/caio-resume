@@ -42,6 +42,7 @@ const pt: Dictionary = {
     building: "Em construção",
     github: "GitHub",
     website: "Site",
+    post: "Post no LinkedIn",
     builtWith: "Feito com",
     myCommunity: "Minha comunidade",
     joinUs: "Participe",

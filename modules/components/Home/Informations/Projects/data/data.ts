@@ -54,6 +54,17 @@ export const HomeProjects: Project[] = [
       "Campaign pages such as Agosto Lilás",
     ],
     image: { src: "/projects/hyphenhub.png", width: 2880, height: 1800 },
+    gallery: [
+      { src: "/projects/hyphenhub-ecosystem.jpg", width: 1440, height: 900, caption: "The Hyphen ecosystem" },
+      { src: "/projects/hyphenhub-channels.jpg", width: 1440, height: 900, caption: "The community channels" },
+      { src: "/projects/hyphenhub-agosto-lilas.jpg", width: 1440, height: 900, caption: "Agosto Lilás campaign page" },
+      {
+        src: "/projects/hyphenhub-agosto-lilas-quiz.jpg",
+        width: 1440,
+        height: 900,
+        caption: "Agosto Lilás quiz on the types of violence",
+      },
+    ],
   },
   {
     id: "03",
@@ -85,6 +96,12 @@ export const HomeProjects: Project[] = [
       "Business money kept apart from personal money: income, expenses and a monthly overview chart",
       "Designed phone first, for one-handed use",
     ],
+    image: { src: "/projects/zeroaomei-hero.jpg", width: 1440, height: 900 },
+    gallery: [
+      { src: "/projects/zeroaomei-moment.jpg", width: 1440, height: 840, caption: "Where to start, with or without a CNPJ" },
+      { src: "/projects/zeroaomei-features.jpg", width: 1440, height: 840, caption: "DAS reminders and step-by-step guides" },
+      { src: "/projects/zeroaomei-plans.jpg", width: 1440, height: 840, caption: "Free and PRO plans" },
+    ],
   },
   {
     id: "04",
@@ -112,6 +129,57 @@ export const HomeProjects: Project[] = [
       "Each unit keeps its own categories and medicines, isolated by row-level security",
       "A network admin panel that reads every unit",
       "A Next.js front end that talks to a FastAPI back end, which queries Supabase with the user's own token",
+    ],
+    // telas com dados de demonstracao
+    image: { src: "/projects/ubsstock-network.jpg", width: 1440, height: 836, caption: "Network admin panel" },
+    gallery: [
+      { src: "/projects/ubsstock-stock.jpg", width: 1536, height: 674, caption: "Stock by batch, with expiry alerts" },
+      { src: "/projects/ubsstock-catalog.jpg", width: 1536, height: 674, caption: "Medicine catalog by category" },
+      { src: "/projects/ubsstock-review.jpg", width: 1536, height: 674, caption: "Review before saving a new medicine" },
+    ],
+  },
+  {
+    id: "05",
+    slug: "indicatorz",
+    title: "IndicatorZ",
+    desc: "Internal tool for the maintenance planning (PCM) team that cleans the monthly machine stoppage spreadsheet and turns it into maintenance indicators, running entirely in the browser",
+    stack: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "TailwindCSS",
+      "shadcn/ui",
+      "ExcelJS",
+      "JSZip",
+      "Vitest",
+      "MVVM Architecture",
+    ],
+    github: "",
+    privateRepo: true,
+    website: "",
+    post: "https://www.linkedin.com/feed/update/urn:li:activity:7521292795467366402/",
+    building: false,
+    overview:
+      "Every month the stoppage spreadsheet left the system with the same errors, and fixing it by hand was repetitive and left no record. Before writing code I followed a month-end closing with the PCM team, and the main rule came from it: fix on its own only what is certain and leave the rest for a person to decide. Since the data can't leave the computer, it ships as a single HTML file opened from the shared folder, with no server, database or network calls.",
+    highlights: [
+      "Automatic fixes only where they are certain: stoppages that cross midnight and standardized names",
+      "Anything that needs judgment becomes a flag for the reviewer, with the suggestion highlighted and nothing applied without confirmation",
+      "Pareto by machine and by problem with the 80% cutoff, MTTR per machine, stoppages by hour of the day and a summary per production line",
+      "Excel export with the original columns, indicator tabs with native charts, a history of every change and the removed records with reason and reviewer",
+      "Charts written straight into the file as DrawingML, since ExcelJS can't create them, and 92 Vitest tests that use real extractions as regression cases",
+    ],
+    // telas do post, com dados ficticios
+    image: {
+      src: "/projects/indicatorz-indicators.jpg",
+      width: 800,
+      height: 500,
+      caption: "Indicators for the month",
+    },
+    gallery: [
+      { src: "/projects/indicatorz-upload.jpg", width: 800, height: 500, caption: "Loading the monthly spreadsheet" },
+      { src: "/projects/indicatorz-review-time.jpg", width: 800, height: 500, caption: "Review: end before start" },
+      { src: "/projects/indicatorz-review-duplicate.jpg", width: 800, height: 500, caption: "Review: possible duplicate" },
+      { src: "/projects/indicatorz-export.jpg", width: 800, height: 500, caption: "Signing and downloading the cleaned file" },
     ],
   },
 ];

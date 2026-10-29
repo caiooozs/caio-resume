@@ -6,15 +6,16 @@ import { getI18n } from "@/lib/i18n/server";
 import { cn } from "@/lib/utils";
 
 /**
- * Links de um projeto (GitHub e site), acima do link da linha. Repositorio
- * fechado vira um rotulo: o link levaria quem visita a um 404.
+ * Links de um projeto (GitHub, site e post no LinkedIn), acima do link da
+ * linha. Repositorio fechado vira um rotulo: o link levaria quem visita a um 404.
  */
 export default async function ProjectLinks({
   github,
   website,
   privateRepo,
+  post,
   className,
-}: Pick<Project, "github" | "website" | "privateRepo"> & { className?: string }) {
+}: Pick<Project, "github" | "website" | "privateRepo" | "post"> & { className?: string }) {
   const { t } = await getI18n();
 
   return (
@@ -33,6 +34,12 @@ export default async function ProjectLinks({
       {website && (
         <Link href={website} className="group/link inline-flex items-center gap-1 transition-colors hover:text-ink">
           {t.home.website}
+          <ExternalArrow />
+        </Link>
+      )}
+      {post && (
+        <Link href={post} className="group/link inline-flex items-center gap-1 transition-colors hover:text-ink">
+          {t.home.post}
           <ExternalArrow />
         </Link>
       )}

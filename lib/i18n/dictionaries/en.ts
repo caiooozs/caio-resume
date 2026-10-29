@@ -40,6 +40,7 @@ const en = {
     building: "Building",
     github: "GitHub",
     website: "Website",
+    post: "LinkedIn post",
     builtWith: "Built with",
     myCommunity: "My Community",
     joinUs: "Join us",

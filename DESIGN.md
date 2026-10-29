@@ -286,12 +286,12 @@ The replacement for cards. A row is a 12px-cornered block with 16px/12px padding
 
 ### Rows That Open
 The project row given room: on Projects each row opens in place into a short case study (WAI accordion pattern). The header is the project row unchanged except that the title is Section size, set as an h2 whose button stretches over the whole header, and a 16px chevron sits in its own third column so it holds the corner when the links wrap (Subtle at rest, Ink on row hover, turning 180° over 300ms when open). The gliding Raised highlight moves between headers only; an open panel sits on the bare ground with no fill, border or shadow.
-- **Panel:** 12px top and 48px bottom padding, content on the title column: the screenshot (when there is one), then Overview (Body in Ink at 85%, max 62ch) beside What it does (Body in Muted, each item led by an 8px Subtle hairline dash instead of a bullet glyph), under Meta sub-headings in Muted. See Layout for the columns.
+- **Panel:** 12px top and 48px bottom padding, content on the title column: the screenshot (when there is one), then the gallery of other screens (two columns from 640px with 16px/24px gaps, each with its caption in Meta Muted under it, 10px apart; an odd last screen takes the full row), then Overview (Body in Ink at 85%, max 62ch) beside What it does (Body in Muted, each item led by an 8px Subtle hairline dash instead of a bullet glyph), under Meta sub-headings in Muted. See Layout for the columns.
 - **Open state:** each row's id is its slug; opening writes `#slug` with replaceState (no history entry, no scroll), closing clears it, and arriving at `/projects#slug` opens that row. Closed panels stay in the DOM but inert; without JS every panel is open.
 - **Expand all:** a small ghost pill (32px, 0.8125rem) in the page intro with a chevron that turns when everything is open; its label switches to Collapse all.
 
 ### Project Links
-GitHub and Website as Meta links in Muted with a 14px diagonal arrow in Subtle that nudges toward its corner and turns Ink on hover; they sit above the row link. A private repository shows a label instead of a dead link: a 14px lock glyph in Subtle and "Private repository" in Muted, not interactive.
+GitHub, Website and LinkedIn post as Meta links in Muted with a 14px diagonal arrow in Subtle that nudges toward its corner and turns Ink on hover; they sit above the row link. A private repository shows a label instead of a dead link: a 14px lock glyph in Subtle and "Private repository" in Muted, not interactive.
 
 ### Section Link
 A Meta link in Muted to the right of a section heading, baseline-aligned, with a 14px arrow in Subtle that nudges 2px and turns Ink on hover: "See details" (straight arrow) beside Projects on Home leads to Projects, "Watch now" (diagonal arrow) beside Latest Videos leads out.
