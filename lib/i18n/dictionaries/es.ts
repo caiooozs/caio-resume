@@ -83,6 +83,15 @@ const es: Dictionary = {
     overview: "Descripción general",
     whatItDoes: "Qué hace",
     screenshotAlt: "Página de inicio de {title}",
+    viewer: {
+      label: "Pantallas de {title}",
+      count: "{n} de {total}",
+      previous: "Pantalla anterior",
+      next: "Pantalla siguiente",
+      zoomIn: "Acercar",
+      zoomOut: "Alejar",
+      close: "Cerrar",
+    },
   },
   about: {
     career: "Trayectoria",

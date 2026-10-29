@@ -83,6 +83,15 @@ const pt: Dictionary = {
     overview: "Visão geral",
     whatItDoes: "O que ele faz",
     screenshotAlt: "Página inicial do {title}",
+    viewer: {
+      label: "Telas do {title}",
+      count: "{n} de {total}",
+      previous: "Tela anterior",
+      next: "Próxima tela",
+      zoomIn: "Ver de perto",
+      zoomOut: "Afastar",
+      close: "Fechar",
+    },
   },
   about: {
     career: "Carreira",

@@ -73,6 +73,15 @@ const en = {
     overview: "Overview",
     whatItDoes: "What it does",
     screenshotAlt: "{title} home page",
+    viewer: {
+      label: "{title} screens",
+      count: "{n} of {total}",
+      previous: "Previous screen",
+      next: "Next screen",
+      zoomIn: "Zoom in",
+      zoomOut: "Zoom out",
+      close: "Close",
+    },
   },
   about: {
     career: "Career",

@@ -168,6 +168,30 @@
   }
 }
 
+/* visualizador de telas: o fundo escurece e a tela entra em foco */
+@keyframes viewer-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes viewer-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+    filter: blur(6px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .viewer[open] {
+    animation: viewer-fade 0.3s var(--ease-out-expo);
+  }
+  .viewer-in {
+    animation: viewer-in 0.5s var(--ease-out-expo) backwards;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .enter {
     /* backwards: sem transform/filter retido depois do fim (nao prende fixed) */

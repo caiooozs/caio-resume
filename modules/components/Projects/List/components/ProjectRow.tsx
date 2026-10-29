@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import type { Project, ProjectImage } from "@/types/types";
 import { Status } from "@/components/ui/kit";
@@ -6,30 +5,12 @@ import { TechList } from "@/components/ui/tech-list";
 import { DisclosureButton, DisclosureItem, DisclosurePanel } from "@/components/ui/disclosure";
 import ProjectLinks from "@/modules/components/Home/Informations/Projects/Components/ProjectLinks";
 import { getI18n } from "@/lib/i18n/server";
-
-/** Uma tela do projeto na moldura de foto, na proporcao real da imagem. */
-function Screenshot({ image, alt, sizes }: { image: ProjectImage; alt: string; sizes: string }) {
-  return (
-    <div
-      style={{ aspectRatio: `${image.width} / ${image.height}` }}
-      className="relative overflow-hidden rounded-2xl bg-raised shadow-[0_1px_2px_rgb(0_0_0/0.06),0_16px_40px_-16px_rgb(0_0_0/0.3)] ring-1 ring-black/5 dark:ring-white/8"
-    >
-      {/* no escuro, a tela (quase sempre clara) baixa um pouco a exposicao */}
-      <Image
-        src={image.src}
-        alt={alt}
-        fill
-        sizes={sizes}
-        className="panel-wipe object-cover dark:brightness-[0.86]"
-      />
-    </div>
-  );
-}
+import { ProjectScreens } from "./ProjectScreens";
 
 /**
  * Um projeto em /projects: a mesma linha da Home (numero, nome, estado, links,
- * descricao e stack), so que o nome abre os detalhes ali mesmo: a tela do
- * projeto no ar (e as outras telas, em grade), a visao geral e o que ele faz.
+ * descricao e stack), so que o nome abre os detalhes ali mesmo: as telas do
+ * projeto (que abrem em tela cheia para ver de perto), a visao geral e o que ele faz.
  * O destaque desliza so entre os cabecalhos; o painel aberto fica no chao da
  * pagina, sem fundo.
  */
@@ -108,38 +89,11 @@ export default async function ProjectRow({ project, index }: { project: Project;
         <div className="-mx-2 min-h-0 overflow-hidden px-2 sm:-mx-3 sm:px-3 lg:-mx-6 lg:px-6">
           <div className="grid grid-cols-[1.75rem_minmax(0,1fr)] px-3 pt-3 pb-12">
             <div className="col-start-2 flex min-w-0 flex-col gap-8">
-              {image && (
-                <figure>
-                  <Screenshot image={image} alt={altFor(image)} sizes="(min-width: 1024px) 54rem, calc(100vw - 6rem)" />
-                </figure>
-              )}
-
-              {gallery && gallery.length > 0 && (
-                <ul className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
-                  {gallery.map((shot, shotIndex) => {
-                    // numero impar de telas: a ultima ocupa a linha toda, sem buraco ao lado
-                    const wide = shotIndex === gallery.length - 1 && shotIndex % 2 === 0;
-                    return (
-                      <li key={shot.src} className={wide ? "sm:col-span-2" : undefined}>
-                        <figure className="flex flex-col gap-2.5">
-                          <Screenshot
-                            image={shot}
-                            alt={altFor(shot)}
-                            sizes={
-                              wide
-                                ? "(min-width: 1024px) 54rem, calc(100vw - 6rem)"
-                                : "(min-width: 1024px) 27rem, (min-width: 640px) calc(50vw - 3rem), calc(100vw - 6rem)"
-                            }
-                          />
-                          {shot.caption && (
-                            <figcaption className="text-[0.8125rem] text-muted">{shot.caption}</figcaption>
-                          )}
-                        </figure>
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
+              <ProjectScreens
+                title={title}
+                image={image && { ...image, alt: altFor(image) }}
+                gallery={(gallery ?? []).map((shot) => ({ ...shot, alt: altFor(shot) }))}
+              />
 
               <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_22.5rem] lg:gap-12">
                 {overview && (
