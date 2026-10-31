@@ -6,9 +6,14 @@ import { TimelineData } from "./data";
 const translations: ListTranslations<TimelineItem> = {
   pt: {
     "empresa-1": {
-      role: "CEO e fundador",
       period: "Agosto 2026 — Atual",
-      desc: "Uma startup focada em desenvolver soluções de tecnologia e marketing para microempreendedores. Atualmente desenvolvemos soluções para dois produtos. ZeroAoMEI e UBSstock",
+      desc: "Uma software house focada em desenvolver soluções de tecnologia para microempreendedores. Atualmente desenvolvemos soluções para dois produtos. ZeroAoMEI e UBSstock",
+    },
+    "empresa-5": {
+      role: "Fundador",
+      period: "Maio 2026 — Atual",
+      contract: "Comunidade",
+      desc: "Uma comunidade focada em estudantes de tecnologia e pessoas em transição de carreira. Realizamos eventos, oficinas e palestras, e criamos espaço para networking e troca de conhecimento.",
     },
     "empresa-2": {
       role: "Estagiário de TI",
@@ -28,9 +33,14 @@ const translations: ListTranslations<TimelineItem> = {
   },
   es: {
     "empresa-1": {
-      role: "CEO y fundador",
       period: "Agosto 2026 — Actualidad",
-      desc: "Una startup enfocada en desarrollar soluciones de tecnología y marketing para microemprendedores. Actualmente desarrollamos soluciones para dos productos. ZeroAoMEI y UBSstock",
+      desc: "Una software house enfocada en desarrollar soluciones de tecnología para microemprendedores. Actualmente desarrollamos soluciones para dos productos. ZeroAoMEI y UBSstock",
+    },
+    "empresa-5": {
+      role: "Fundador",
+      period: "Mayo 2026 — Actualidad",
+      contract: "Comunidad",
+      desc: "Una comunidad enfocada en estudiantes de tecnología y personas en transición de carrera. Organizamos eventos, talleres y charlas, y creamos espacio para el networking y el intercambio de conocimiento.",
     },
     "empresa-2": {
       role: "Pasante de TI",

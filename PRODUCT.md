@@ -48,7 +48,7 @@ A frontend developer (React, Next.js, TypeScript) who also runs a YouTube channe
 - Portrait: `public/me.jpg`.
 - Event photos: `public/rfec_ideathon.jpg`, `public/upe_idathon.jpg`, `public/recriando_cidade.jpeg`.
 - CV: `public/caio_tech_cv.pdf`.
-- 4 projects (2 marked as building), 4 career entries (3 current), 3 events, 2 channels, live YouTube feed.
+- 4 projects (2 marked as building), 5 career entries (4 current), 3 events, 2 channels, live YouTube feed.
 - No testimonials, metrics, client logos, or follower counts exist. Do not invent them.
 
 ## Product Principles
